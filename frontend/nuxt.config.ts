@@ -25,7 +25,7 @@ app: {
             { property: 'og:title', content: 'Соболек - официальный сайт' },
             { property: 'og:description', content: 'Турбаза на черном море' },
             { property: 'og:type', content: 'website' },
-            { property: 'og:url', content: 'https://legenda-sobolek.ru' },
+            { property: 'og:url', content: 'https://sobolek-bratsk.ru' },
             { property: 'og:image', content: '/images/default-image.jpg' },
             { name: 'twitter:image', content: '/images/default-image.jpg' },
         ],
@@ -55,7 +55,7 @@ app: {
   devtools: { enabled: true },
     vite: {
         server: {
-            allowedHosts: ['localhost', 'legenda-sobolek.ru'],
+            allowedHosts: ['localhost', 'sobolek-bratsk.ru'],
         },
         css: {
             devSourcemap: true,
@@ -99,7 +99,7 @@ app: {
         },
         quality: 80,
         format: ['webp'],
-        domains: ['localhost:1337', 'cms.legenda-sobolek.ru', 'legenda-sobolek.ru'],
+        domains: ['localhost:1337', 'cms.sobolek-bratsk.ru', 'sobolek-bratsk.ru'],
         alias: {
             strapi: process.env.STRAPI_CLIENT_URL || 'http://localhost:1337'
         }

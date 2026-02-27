@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
     const response = await $fetch(`${strapiUrl}/api/pages?fields[0]=slug&fields[1]=updatedAt&populate[SEO][fields][0]=preventIndexing&locale=ru&pagination[limit]=100`)
     
     const pages = response?.data || []
-    const baseUrl = 'https://legenda-sobolek.ru'
+    const baseUrl = 'https://sobolek-bratsk.ru'
     
     // Фильтруем страницы, где не запрещена индексация
     const urls = pages
@@ -38,7 +38,7 @@ ${urls}
     const fallbackSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://legenda-sobolek.ru/</loc>
+    <loc>https://sobolek-bratsk.ru/</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>

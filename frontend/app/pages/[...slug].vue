@@ -127,7 +127,7 @@ useSeoMeta({
   ogTitle: 'Соболек - официальный сайт',
   ogDescription: 'Уютная турбаза на Черном море с собственным галечным пляжем и развитой инфраструктурой',
   ogType: 'website',
-  ogUrl: 'https://legenda-sobolek.ru',
+  ogUrl: 'https://sobolek-bratsk.ru',
   ogImage: '/images/default-image.jpg',
   robots: 'index, follow'
 })
@@ -152,7 +152,7 @@ watch(pageData, (data) => {
       }
     }
     
-    const url = `https://legenda-sobolek.ru/${page.slug === 'home' ? '' : page.slug}`
+    const url = `https://sobolek-bratsk.ru/${page.slug === 'home' ? '' : page.slug}`
     const indexing = page.SEO?.preventIndexing ? 'noindex, nofollow' : 'index, follow'
 
     useHead({
