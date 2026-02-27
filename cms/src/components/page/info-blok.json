@@ -1,0 +1,59 @@
+{
+  "collectionName": "components_page_info_blok",
+  "info": {
+    "displayName": "Инфо блок",
+    "icon": "slideshow",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "is_video": {
+      "type": "boolean",
+      "default": false
+    },
+    "video_url": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "is_video"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "images": {
+      "type": "media",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "is_video"
+            },
+            false
+          ]
+        }
+      },
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "cards": {
+      "type": "component",
+      "component": "page.kartochka",
+      "repeatable": true
+    }
+  }
+}

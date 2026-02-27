@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_page_opczii",
+  "info": {
+    "displayName": "Опции",
+    "icon": "server"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "muted"
+      ]
+    }
+  },
+  "config": {}
+}

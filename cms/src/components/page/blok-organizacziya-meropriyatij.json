@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_page_blok_organizacziya_meropriyatij",
+  "info": {
+    "displayName": "Блок организация мероприятий",
+    "icon": "star"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "tabs": {
+      "type": "component",
+      "component": "page.taby",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

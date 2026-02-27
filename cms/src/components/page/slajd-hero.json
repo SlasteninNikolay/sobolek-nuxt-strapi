@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_page_slajd_hero",
+  "info": {
+    "displayName": "Слайд Hero",
+    "icon": "picture",
+    "description": "Слайд для главного экрана с изображением и дополнительными полями"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text",
+      "required": false
+    },
+    "link": {
+      "type": "string",
+      "required": false
+    },
+    "linkText": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

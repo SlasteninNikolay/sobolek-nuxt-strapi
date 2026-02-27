@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_page_blok_s_kartoj",
+  "info": {
+    "displayName": "Блок с картой",
+    "icon": "pinMap"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "coordinates": {
+      "type": "json",
+      "required": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_page_knopki",
+  "info": {
+    "displayName": "Кнопки",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "muted"
+      ],
+      "default": "primary"
+    },
+    "link": {
+      "displayName": "Ссылка",
+      "type": "component",
+      "repeatable": false,
+      "component": "page.ssylka"
+    }
+  }
+}

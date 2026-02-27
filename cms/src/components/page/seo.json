@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_page_seos",
+  "info": {
+    "displayName": "seo",
+    "icon": "globe",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "text"
+    },
+    "metaField": {
+      "displayName": "metaField",
+      "type": "component",
+      "repeatable": true,
+      "component": "seo.meta-field"
+    },
+    "preventIndexing": {
+      "type": "boolean",
+      "default": true
+    },
+    "structuredData": {
+      "type": "json"
+    },
+    "metaImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

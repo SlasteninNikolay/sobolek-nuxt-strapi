@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_page_zagolovok",
+  "info": {
+    "displayName": "Заголовок",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "theme": {
+      "type": "enumeration",
+      "default": " primary",
+      "enum": [
+        " primary",
+        "secondary",
+        "muted"
+      ]
+    },
+    "label": {
+      "type": "text"
+    },
+    "title": {
+      "type": "text"
+    }
+  }
+}

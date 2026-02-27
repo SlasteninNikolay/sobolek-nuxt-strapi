@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_page_pervyj_ekran_mini_s",
+  "info": {
+    "displayName": "Первый экран (мини)",
+    "icon": "picture"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "subtitle": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

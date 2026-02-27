@@ -1,0 +1,83 @@
+name: CAMPS-NUXT-Strapi
+services:
+  fronted:
+    build: 
+      context: ../frontend
+      dockerfile: ../dev-config/Dockerfile.frontend
+    volumes:
+      - ../frontend:/usr/app
+      - frontend_node_modules:/usr/app/node_modules
+    environment:
+      STRAPI_SERVER_URL: ${STRAPI_SERVER_URL:-http://cms:1337}
+      STRAPI_CLIENT_URL: ${STRAPI_CLIENT_URL:-http://localhost:1337}
+      NUXT_STRAPI_TOKEN: ${NUXT_STRAPI_TOKEN}
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    depends_on:
+      - cms
+    restart: unless-stopped
+    networks:
+      - strapi
+  cms:
+    build: 
+      context: ../cms
+      dockerfile: ../dev-config/Dockerfile.cms
+    volumes:
+      - ../cms:/usr/app
+      - cms_node_modules:/usr/app/node_modules
+    environment: 
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      STRAPI_TOKEN: ${NUXT_STRAPI_TOKEN}
+      STRAPI_URL: ${STRAPI_SERVER_URL:-http://cms:1337}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      JWT_SECRET: ${JWT_SECRET}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_HOST: db
+      DATABASE_CLIENT: mysql
+      DATABASE_PORT: 3306
+      DATABASE_SSL: "false"
+      NODE_ENV: development
+    ports:
+      - "1337:1337"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - strapi
+  db: 
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DATABASE_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - strapi
+
+networks:
+  strapi:
+volumes:
+  db:
+  frontend_node_modules:
+  cms_node_modules:
+
+
+
+

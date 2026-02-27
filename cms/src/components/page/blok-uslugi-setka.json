@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_page_blok_uslugi_setkas",
+  "info": {
+    "displayName": "Блок услуги (сетка)",
+    "icon": "grid",
+    "description": "Секция с чередующимися элементами: картинка + текст"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "items": {
+      "type": "component",
+      "component": "page.usluga-setka-element",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

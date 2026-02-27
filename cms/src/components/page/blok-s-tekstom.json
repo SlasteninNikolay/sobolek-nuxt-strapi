@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_page_blok_s_tekstom",
+  "info": {
+    "displayName": "Блок с текстом",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "text": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_page_blok_uchebnye_korpusa",
+  "info": {
+    "displayName": "Блок Активный отдых",
+    "icon": "walk"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

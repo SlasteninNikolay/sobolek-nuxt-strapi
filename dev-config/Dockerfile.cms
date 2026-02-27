@@ -1,0 +1,29 @@
+FROM node:20-bullseye
+
+RUN apt-get update && apt-get install -y \
+    libvips-dev \
+    python3 \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV NODE_ENV=production
+WORKDIR /usr/app
+
+COPY package*.json yarn.lock* ./
+
+RUN yarn install --frozen-lockfile --production
+
+ENV PATH /usr/app/node_modules/.bin:$PATH
+
+COPY . .
+
+RUN yarn build
+
+RUN chown -R node:node /usr/app
+RUN chmod -R 775 /usr/app/public/uploads
+RUN mkdir -p /usr/app/.tmp && chown -R node:node /usr/app/.tmp
+USER node
+
+EXPOSE 1337
+
+CMD ["yarn", "run", "dev"]

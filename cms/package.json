@@ -1,0 +1,38 @@
+{
+  "name": "cms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Strapi application",
+  "scripts": {
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade minor",
+    "upgrade:dry": "npx @strapi/upgrade minor --dry"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.23.6",
+    "@strapi/plugin-users-permissions": "5.23.6",
+    "@strapi/provider-email-nodemailer": "^5.31.0",
+    "@strapi/strapi": "5.23.6",
+    "mysql2": "3.9.8",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "styled-components": "^6.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "401c78f6-3216-425c-93e5-1150fdd98451",
+    "installId": "430e00e30e8ec9254f0818ef49e0fe364e4be8501a7698245ffe5c44e4077ea4"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

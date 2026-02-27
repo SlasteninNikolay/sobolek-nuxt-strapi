@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_page_taby",
+  "info": {
+    "displayName": "Таб",
+    "icon": "server"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "unique": true
+    },
+    "content": {
+      "type": "blocks"
+    },
+    "buttons": {
+      "type": "component",
+      "component": "page.knopki",
+      "repeatable": false
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

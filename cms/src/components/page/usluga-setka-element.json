@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_page_usluga_setka_elements",
+  "info": {
+    "displayName": "Услуга (сетка) - элемент",
+    "icon": "apps",
+    "description": "Элемент блока услуг-сетки: подпись + заголовок + описание + картинка"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Бесплатно"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

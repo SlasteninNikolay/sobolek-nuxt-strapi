@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_page_udobstva",
+  "info": {
+    "displayName": "Удобства",
+    "icon": "grid",
+    "description": "Секция с плашками (иконка + заголовок + описание)"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "cards": {
+      "type": "component",
+      "component": "page.kartochka",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

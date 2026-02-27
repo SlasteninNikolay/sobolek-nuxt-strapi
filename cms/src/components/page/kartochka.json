@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_page_kartochka",
+  "info": {
+    "displayName": "Карточка",
+    "icon": "layout"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "content": {
+      "type": "blocks"
+    },
+    "theme": {
+      "type": "enumeration",
+      "default": "primary",
+      "enum": [
+        "primary",
+        "secondary",
+        "muted"
+      ]
+    }
+  },
+  "config": {}
+}

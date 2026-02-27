@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_menu_tekst",
+  "info": {
+    "displayName": "Текст",
+    "icon": "pencil"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_menu_punkt_menyu",
+  "info": {
+    "displayName": "Пункт меню",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

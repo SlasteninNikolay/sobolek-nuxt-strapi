@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_page_pervyj_ekran",
+  "info": {
+    "displayName": "Первый экран",
+    "icon": "monitor",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "slides": {
+      "type": "component",
+      "component": "page.slajd-hero",
+      "repeatable": true,
+      "required": false
+    }
+  }
+}

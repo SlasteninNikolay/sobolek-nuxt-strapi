@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Regular.woff2') format('woff2'),
+    url('../fonts/Montserrat-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Medium.woff2') format('woff2'),
+    url('../fonts/Montserrat-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-SemiBold.woff2') format('woff2'),
+    url('../fonts/Montserrat-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Etude Noire локально */
+@font-face {
+    font-family: 'Etude Noire';
+    src: url('../fonts/EtudeNoire.woff2') format('woff2'),
+    url('../fonts/EtudeNoire.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Etude Noire';
+    src: url('../fonts/EtudeNoire-Medium.woff2') format('woff2'),
+    url('../fonts/EtudeNoire-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    /* Цветовая палитра */
+    --color-primary: #2A3928;
+    --color-secondary: #BDAD83;
+    --color-brown: #564242;
+    --color-beige: #FFF6EB;
+    --background-color-baige: #FFF6EB;
+    --color-text-dark: #424242;
+}
+
+
+@layer base {
+    html {
+        font-family: 'Montserrat', serif;
+        background-color: #FFF6EB;
+        color: #424242;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    svg.icon path {
+        fill: currentColor !important;
+    }
+
+    .h4 {
+        @apply text-xl font-semibold text-primary;
+    }
+
+}
+
+.swiper-slide {
+    @apply h-auto !important;
+}
+
+/*.swiper-slide img {*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    object-fit: cover;*/
+/*}*/
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--color-primary) !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,.1);
+    border-radius: 50%;
+}
+
+.swiper-pagination {
+    @apply py-2;
+}
+
+.swiper-pagination-bullet {
+    @apply bg-white w-2 h-2 mx-1 !important;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    @apply bg-white !important;
+}
+
+.tl-fancybox {
+    @apply py-10 !important;
+}
+
+.swiper-pagination-bullet {
+    @apply bg-gray-300 w-2 h-2 opacity-50 mx-2;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    @apply bg-white opacity-100;
+}
+
+.x-tl-booking-widget {
+    background: var(--color-secondary) !important;
+    z-index: 10 !important;
+}
