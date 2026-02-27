@@ -3,6 +3,8 @@
 import AppSlider from "~/components/base/AppSlider.vue";
 import AppSliderImage from "~/components/base/AppSliderImage.vue";
 
+const leadModal = useLeadModal()
+
 const props = defineProps({
   room: {
     type: Object,
@@ -12,6 +14,17 @@ const props = defineProps({
 })
 
 const htmlRoomDescription = computed(() => richTextToHtml(props.room?.description))
+
+const handleBookingClick = (button: any, event: MouseEvent) => {
+  event.preventDefault()
+
+  // Strapi хранит roomId в ссылке (href). Пробрасываем её, вдруг пригодится в будущем.
+  const roomId = button?.link?.href || ''
+  leadModal.open({
+    formType: 'Оставить заявку',
+    source: roomId ? `room:${roomId}` : 'room:unknown',
+  })
+}
 </script>
 
 <template>
@@ -50,8 +63,7 @@ const htmlRoomDescription = computed(() => richTextToHtml(props.room?.descriptio
           size="small"
           :title="button.link?.label || ''"
           :aria-label="button.link?.label || ''"
-          data-tl-booking-open="true"
-          :data-tl-room="button.link?.href || ''"
+          @click="handleBookingClick(button, $event)"
       />
     </div>
   </div>

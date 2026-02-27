@@ -18,6 +18,9 @@
     </div>
   </div>
   <cookie-notice />
+
+  <!-- Глобальная модалка "Оставить заявку" (открывается из любых кнопок) -->
+  <app-lead-modal />
 </template>
 
 <script setup>

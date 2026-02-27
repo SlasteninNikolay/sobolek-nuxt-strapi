@@ -2,6 +2,8 @@
 import AppBaseForm from "~/components/base/AppBaseForm.vue";
 import AppBaseModal from "~/components/base/AppBaseModal.vue";
 
+const leadModal = useLeadModal()
+
 const props = defineProps({
   menuData: {
     type: Array,
@@ -94,6 +96,13 @@ const handleButtonClick = (item, event) => {
   event.preventDefault();
   showPhoneWidget.value = false
   showModal.value = true
+}
+
+const handleBookingClick = (event) => {
+  // вместо перехода по ссылке открываем форму "Оставить заявку"
+  event?.preventDefault?.()
+  closeMobileMenu()
+  leadModal.open({ formType: 'Оставить заявку', source: 'header:booking' })
 }
 
 function handlePhoneClick() {
@@ -218,8 +227,7 @@ const throttle = (func, limit) => {
               title="БРОНИРОВАТЬ"
               aria-label="Забронировать"
               class="py-1 px-4 xl:py-2 xl:px-6 border-primary text-primary hover:text-white uppercase tracking-wider text-xs xl:text-sm font-semibold"
-              data-tl-booking-open="true"
-              data-tl-room=""
+              @click="handleBookingClick"
           />
         </div>
       </div>
@@ -281,9 +289,9 @@ const throttle = (func, limit) => {
                     <li class="p-4 border-b border-gray-100">
                       <a
                           @click="handlePhoneClick()"
-                          href="tel:+78617660080"
+                          href="tel:+73953282287"
                           class="text-primary"
-                      >+7 (861) 766-00-80</a>
+                      >+7 (3953) 282-287</a>
                     </li>
                     <li class="p-4">
                       <base-app-button
