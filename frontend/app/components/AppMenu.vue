@@ -242,7 +242,7 @@ const throttle = (func, limit) => {
               :alt="logo?.alt || 'Логотип'"
               :width="logo?.width || 160"
               :height="logo?.height || 40"
-              class="h-5 w-auto"
+              class="h-8 w-auto"
               loading="lazy"
               decoding="async"
           />
@@ -334,7 +334,7 @@ const throttle = (func, limit) => {
           :class="isMobileMenuOpen ? 'menu-open' : 'menu-closed'"
       >
         <div class="container h-full flex flex-col py-10 items-start justify-evenly">
-          <h2 class="text-primary/50">Legenda Camps</h2>
+          <h2 class="text-primary/50">База отдыха Соболек</h2>
           <ul class="space-y-2 pb-14 border-t-1 border-secondary-100">
             <li v-for="item in menuData" :key="item.id">
               <template v-if="item.__component !== 'menu.logo'">
