@@ -20,13 +20,27 @@ const duplicatedSlides = computed(() => {
 });
 
 const swiperOptions = {
-  slidesPerView: 5,
+  slidesPerView: 1.5,
   centeredSlides: true,
   spaceBetween: 10,
   loop: true,
   observer: true,
   observeParents: true,
   autoHeight: false,
+  breakpoints: {
+    640: {
+      slidesPerView: 2.5,
+      centeredSlides: true,
+    },
+    768: {
+      slidesPerView: 3.5,
+      centeredSlides: true,
+    },
+    1024: {
+      slidesPerView: 5,
+      centeredSlides: true,
+    },
+  },
 };
 
 const htmlDescription = computed(() => richTextToHtml(props.description))
@@ -220,7 +234,6 @@ const htmlDescription = computed(() => richTextToHtml(props.description))
   inset: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, var(--color-primary), transparent);
   pointer-events: none;
 }
 
