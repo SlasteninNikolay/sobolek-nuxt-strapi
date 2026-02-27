@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   },
 app: {
     head: {
-        title: 'LEGENDA Camps - официальный сайт',
+        title: 'Соболек - официальный сайт',
         htmlAttrs: {
             lang: 'ru'
         },
@@ -22,7 +22,7 @@ app: {
             { name: 'keywords', content: 'турбаза, гостиница, отель, красная щель, отдых, бронь' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
             { name: 'robots', content: 'index,follow' },
-            { property: 'og:title', content: 'LEGENDA Camps - официальный сайт' },
+            { property: 'og:title', content: 'Соболек - официальный сайт' },
             { property: 'og:description', content: 'Турбаза на черном море' },
             { property: 'og:type', content: 'website' },
             { property: 'og:url', content: 'https://legenda-sobolek.ru' },

@@ -122,9 +122,9 @@ const pageData = computed(() => asyncData.value)
 
 // Мета-теги по умолчанию (рендерятся на сервере)
 useSeoMeta({
-  title: 'Legenda Camps - официальный сайт',
+  title: 'Соболек - официальный сайт',
   description: 'Уютная турбаза на Черном море с собственным галечным пляжем и развитой инфраструктурой',
-  ogTitle: 'Legenda Camps - официальный сайт',
+  ogTitle: 'Соболек - официальный сайт',
   ogDescription: 'Уютная турбаза на Черном море с собственным галечным пляжем и развитой инфраструктурой',
   ogType: 'website',
   ogUrl: 'https://legenda-sobolek.ru',
@@ -136,7 +136,7 @@ useSeoMeta({
 watch(pageData, (data) => {
   if (data?.data?.length > 0 && !data.meta?.notFound) {
     const page = data.data[0]
-    const title = page.SEO?.metaTitle || page.title || 'Legenda Camps - официальный сайт'
+    const title = page.SEO?.metaTitle || page.title || 'Соболек - официальный сайт'
     const description = page.SEO?.metaDescription || 'Уютная турбаза на Черном море с собственным галечным пляжем и развитой инфраструктурой'
     
     // Извлекаем URL из объекта изображения Strapi
@@ -173,7 +173,7 @@ watch(pageData, (data) => {
     })
   } else if (data?.meta?.notFound) {
     useSeoMeta({
-      title: 'Страница не найдена - Legenda Camps',
+      title: 'Страница не найдена - Соболек',
       description: 'Запрошенная страница не существует',
       robots: 'noindex, nofollow'
     })
