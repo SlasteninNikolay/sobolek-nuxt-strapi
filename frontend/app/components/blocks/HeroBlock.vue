@@ -27,19 +27,19 @@
                   <!-- Slide Content Overlay (если есть title или description) -->
                   <div 
                     v-if="slide.title || slide.description || slide.link"
-                    class="absolute top-0 left-0 right-0 px-10 py-20 z-10"
+                    class="absolute top-0 left-0 right-0 px-4 sm:px-6 lg:px-10 py-8 sm:py-12 lg:py-20 z-10"
                   >
                     <div class="max-w-3xl">
-                      <h3 v-if="slide.title" class="text-white text-2xl lg:text-4xl font-bold mb-2">
+                      <h3 v-if="slide.title" class="text-white text-xl sm:text-2xl lg:text-4xl font-bold mb-2">
                         {{ slide.title }}
                       </h3>
-                      <p v-if="slide.description" class="text-white/90 text-base lg:text-lg mb-4">
+                      <p v-if="slide.description" class="text-white/90 text-sm sm:text-base lg:text-lg mb-4">
                         {{ slide.description }}
                       </p>
                       <app-button
                         v-if="slide.link && slide.linkText"
                         :href="slide.link"
-                        class="pointer-events-auto mt-10"
+                        class="pointer-events-auto mt-6 sm:mt-8 lg:mt-10"
                         size="lg"
                       >
                         {{ slide.linkText }}
@@ -103,9 +103,27 @@ const displaySlides = computed(() => {
 
 const swiperOptions = {
   modules: [Pagination, Virtual],
-  slidesPerView: 1.5,
-  centeredSlides: true,
-  spaceBetween: 20,
+  // На мобильных показываем 1 слайд (чтобы hero не казался «мелким»)
+  slidesPerView: 1,
+  centeredSlides: false,
+  spaceBetween: 12,
+  breakpoints: {
+    640: {
+      slidesPerView: 1.2,
+      centeredSlides: true,
+      spaceBetween: 16,
+    },
+    768: {
+      slidesPerView: 1.5,
+      centeredSlides: true,
+      spaceBetween: 20,
+    },
+    1024: {
+      slidesPerView: 1.5,
+      centeredSlides: true,
+      spaceBetween: 20,
+    },
+  },
   loop: true,
   loopedSlides: 3,
   virtual: true,
@@ -125,19 +143,8 @@ const swiperOptions = {
 }
 
 .hero-slide {
-  width: 85%;
-}
-
-@media (min-width: 768px) {
-  .hero-slide {
-    width: 75%;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-slide {
-    width: 60%;
-  }
+  /* Не переопределяем ширину слайдов вручную — Swiper сам рассчитает по slidesPerView */
+  width: auto;
 }
 
 .slide-overlay {
