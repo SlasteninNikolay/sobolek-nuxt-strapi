@@ -521,6 +521,8 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'page.blok-organizacziya-meropriyatij',
         'page.blok-uchebnye-korpusa',
         'page.blok-s-kartoj',
+        'page.blok-obratnaya-svyaz',
+        'page.blok-kontakty',
         'page.blok-s-tekstom',
         'page.pervyj-ekran-mini',
       ]

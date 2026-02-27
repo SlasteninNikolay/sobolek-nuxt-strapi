@@ -59,8 +59,11 @@ const { data: asyncData, pending: loading, error, refresh } = await useAsyncData
           'block.hotel_rooms.buttons.link', 'block.hotel_rooms.features',
           'block.hotel_rooms.features.icon', 'block.service', 'block.service.image',
           'block.tabs', 'block.tabs.photos', 'block.tabs.buttons',
+          'block.text', 'block.formType', 'block.buttonText',
           'block.tabs.buttons.link', 'block.gallery', 'block.features', 'block.socials',
           'block.slides', 'block.slides.image', 'block.items', 'block.items.icon', 'block.items.image',
+          // page.blok-kontakty
+          'block.addressIcon', 'block.phoneIcon', 'block.emailIcon',
         ]
         
         const populateParams = populateFields.map((field, index) => 

@@ -60,6 +60,12 @@ const loadBlockComponent = (componentType) => {
     'page.blok-s-kartoj': defineAsyncComponent(() =>
         import('@/components/blocks/MapBlock.vue')
     ),
+    'page.blok-obratnaya-svyaz': defineAsyncComponent(() =>
+      import('@/components/blocks/FeedbackBlock.vue')
+    ),
+    'page.blok-kontakty': defineAsyncComponent(() =>
+        import('@/components/blocks/ContactsBlock.vue')
+    ),
     'page.blok-s-tekstom': defineAsyncComponent(() =>
         import('@/components/blocks/TextBlock.vue')
     ),

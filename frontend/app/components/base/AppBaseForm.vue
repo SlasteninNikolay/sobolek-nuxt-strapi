@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8">
+  <div :class="containerClasses">
     <!-- Сообщение об успехе -->
     <div
         v-if="submitSuccess"
@@ -36,13 +36,21 @@
     >
       <!-- Поле имени -->
       <div>
-        <label for="name" class="block text-sm font-medium text-gray-700">Имя *</label>
+        <label
+          v-if="!hideLabels"
+          for="name"
+          class="block text-sm font-medium text-gray-700"
+          >Имя *</label
+        >
         <VeeField
             name="name"
             type="text"
             autocomplete="name"
-            class="mt-1 px-4 py-2 block w-full rounded-md outline outline-1 outline-secondary-100 focus:outline-secondary-200"
-            :class="{ 'outline-red-500': errors.name }"
+            :placeholder="namePlaceholder"
+            :class="[
+              inputClasses,
+              errors.name && errorInputClasses,
+            ]"
             :disabled="isSubmitting"
         />
         <VeeErrorMessage name="name" class="h-5 mt-1 text-red-500 text-xs" />
@@ -50,16 +58,23 @@
 
       <!-- Поле телефон -->
       <div>
-        <label for="phone" class="block text-sm font-medium text-gray-700">Телефон *</label>
+        <label
+          v-if="!hideLabels"
+          for="phone"
+          class="block text-sm font-medium text-gray-700"
+          >Телефон *</label
+        >
         <VeeField name="phone" v-slot="{ field, errors: fieldErrors }">
           <input
               v-bind="field"
               v-imask="phoneMask"
               type="tel"
               autocomplete="tel"
-              placeholder="+7 (999) 123-45-67"
-              class="mt-1 px-4 py-2 block w-full rounded-md outline outline-1 outline-secondary-100 focus:outline-secondary-200"
-              :class="{ 'outline-red-500': fieldErrors.length }"
+              :placeholder="phonePlaceholder"
+              :class="[
+                inputClasses,
+                fieldErrors.length && errorInputClasses,
+              ]"
               :disabled="isSubmitting"
               @accept="onPhoneAccept"
               @keydown="onPhoneKeydown"
@@ -92,7 +107,7 @@
       <button
           type="submit"
           :disabled="!meta.valid || isSubmitting"
-          class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-sm font-medium text-white bg-secondary hover:bg-secondary-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+          :class="submitButtonClasses"
       >
         <span v-if="isSubmitting" class="flex items-center">
           <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
@@ -101,7 +116,7 @@
           </svg>
           Отправка...
         </span>
-        <span v-else>Отправить</span>
+        <span v-else>{{ submitLabel }}</span>
       </button>
     </VeeForm>
   </div>
@@ -117,6 +132,11 @@ const props = defineProps({
     type: String,
     default: 'form-submissions'
   },
+  variant: {
+    type: String,
+    default: 'default',
+    validator: (v) => ['default', 'feedback'].includes(v)
+  },
   formType: {
     type: String,
     default: 'callback'
@@ -124,7 +144,27 @@ const props = defineProps({
   source: {
     type: String,
     default: ''
-  }
+  },
+  submitLabel: {
+    type: String,
+    default: 'Отправить'
+  },
+  submitFullWidth: {
+    type: Boolean,
+    default: true
+  },
+  namePlaceholder: {
+    type: String,
+    default: ''
+  },
+  phonePlaceholder: {
+    type: String,
+    default: '+7 (999) 123-45-67'
+  },
+  hideLabels: {
+    type: Boolean,
+    default: false
+  },
 })
 
 const emit = defineEmits(['submitted', 'success', 'error'])
@@ -135,6 +175,43 @@ const submitSuccess = ref(false)
 const submitError = ref('')
 const unmaskedPhone = ref('')
 const { reachGoal } = useYandexMetrika()
+
+const containerClasses = computed(() => {
+  if (props.variant === 'feedback') return 'p-0'
+  return 'p-8'
+})
+
+const inputClasses = computed(() => {
+  if (props.variant === 'feedback') {
+    return 'mt-0 block w-full bg-transparent px-0 py-3 text-primary placeholder:text-primary/40 border-b border-primary/30 focus:border-primary outline-none'
+  }
+  return 'mt-1 px-4 py-2 block w-full rounded-md outline outline-1 outline-secondary-100 focus:outline-secondary-200'
+})
+
+const errorInputClasses = computed(() => {
+  if (props.variant === 'feedback') return 'border-b-red-500 focus:border-b-red-500'
+  return 'outline-red-500'
+})
+
+const submitButtonClasses = computed(() => {
+  const width = props.submitFullWidth ? 'w-full' : 'w-full sm:w-auto'
+  if (props.variant === 'feedback') {
+    return [
+      width,
+      'mt-2 inline-flex justify-center px-8 py-3 rounded-xl text-sm font-medium text-white',
+      'bg-secondary hover:bg-secondary-300',
+      'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary',
+      'disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors',
+    ].join(' ')
+  }
+
+  return [
+    width,
+    'flex justify-center py-2 px-4 border border-transparent rounded-md text-sm font-medium text-white',
+    'bg-secondary hover:bg-secondary-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary',
+    'disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors',
+  ].join(' ')
+})
 
 // Маска для телефона
 const phoneMask = {
@@ -195,15 +272,22 @@ const onSubmit = async (values, { resetForm }) => {
       agreeTerms: true
     }
 
-    const response = await $fetch(`${strapiConfig.baseUrl}/api/${props.endpoint}`, {
+    const { data, error } = await useFetch(`${strapiConfig.baseUrl}/api/${props.endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: {
-        data: formData
-      }
+        data: formData,
+      },
+      watch: false,
     })
+
+    if (error.value) {
+      throw error.value
+    }
+
+    const response = data.value
 
 
     reachGoal('zayavka')

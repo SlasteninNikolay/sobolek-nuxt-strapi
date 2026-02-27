@@ -211,7 +211,7 @@ const throttle = (func, limit) => {
 
         <!-- Правая часть: Контакты и кнопка -->
         <div class="flex items-center justify-end gap-3 xl:gap-6">
-           <a target="_blank" rel="nofollow noopener noindex" href="https://t.me/+79180715159">
+           <a target="_blank" rel="nofollow noopener noindex" href="https://t.me/+73953282287">
             <Icon name="my-icon:telegram" class="w-6 h-6 xl:w-8 xl:h-8 duration-300 hover:scale-110 text-primary" />
           </a>
 

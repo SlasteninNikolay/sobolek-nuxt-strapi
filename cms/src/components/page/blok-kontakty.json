@@ -1,0 +1,64 @@
+{
+  "collectionName": "components_page_blok_kontakty",
+  "info": {
+    "displayName": "Блок: Контакты",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "addressIcon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "phoneIcon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "phone1": {
+      "type": "string",
+      "required": true
+    },
+    "phone2": {
+      "type": "string"
+    },
+    "emailIcon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "coordinates": {
+      "type": "json",
+      "required": true
+    },
+    "mapName": {
+      "type": "string",
+      "default": "База отдыха Соболек"
+    },
+    "mapDescription": {
+      "type": "string",
+      "default": "Иркутская область, г.Братск"
+    }
+  },
+  "config": {}
+}

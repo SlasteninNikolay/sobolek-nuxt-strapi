@@ -75,6 +75,45 @@ export interface MenuVypadayushheeMenyu extends Struct.ComponentSchema {
   };
 }
 
+export interface PageBlokKontakty extends Struct.ComponentSchema {
+  collectionName: 'components_page_blok_kontakty';
+  info: {
+    displayName: '\u0411\u043B\u043E\u043A: \u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B';
+    icon: 'phone';
+  };
+  attributes: {
+    address: Schema.Attribute.String & Schema.Attribute.Required;
+    addressIcon: Schema.Attribute.Media<'images'>;
+    coordinates: Schema.Attribute.JSON & Schema.Attribute.Required;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    emailIcon: Schema.Attribute.Media<'images'>;
+    header: Schema.Attribute.Component<'page.zagolovok', false>;
+    mapDescription: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u0418\u0440\u043A\u0443\u0442\u0441\u043A\u0430\u044F \u043E\u0431\u043B\u0430\u0441\u0442\u044C, \u0433.\u0411\u0440\u0430\u0442\u0441\u043A'>;
+    mapName: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u0411\u0430\u0437\u0430 \u043E\u0442\u0434\u044B\u0445\u0430 \u0421\u043E\u0431\u043E\u043B\u0435\u043A'>;
+    phone1: Schema.Attribute.String & Schema.Attribute.Required;
+    phone2: Schema.Attribute.String;
+    phoneIcon: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface PageBlokObratnayaSvyaz extends Struct.ComponentSchema {
+  collectionName: 'components_page_blok_obratnaya_svyaz';
+  info: {
+    displayName: '\u0411\u043B\u043E\u043A: \u041E\u0431\u0440\u0430\u0442\u043D\u0430\u044F \u0441\u0432\u044F\u0437\u044C';
+    icon: 'envelop';
+  };
+  attributes: {
+    buttonText: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u043A\u043E\u043D\u0441\u0443\u043B\u044C\u0442\u0430\u0446\u0438\u044E'>;
+    formType: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u043A\u043E\u043D\u0441\u0443\u043B\u044C\u0442\u0430\u0446\u0438\u044E'>;
+    header: Schema.Attribute.Component<'page.zagolovok', false>;
+    text: Schema.Attribute.Blocks;
+  };
+}
+
 export interface PageBlokOrganizacziyaMeropriyatij
   extends Struct.ComponentSchema {
   collectionName: 'components_page_blok_organizacziya_meropriyatij';
@@ -406,6 +445,8 @@ declare module '@strapi/strapi' {
       'menu.ssylka': MenuSsylka;
       'menu.tekst': MenuTekst;
       'menu.vypadayushhee-menyu': MenuVypadayushheeMenyu;
+      'page.blok-kontakty': PageBlokKontakty;
+      'page.blok-obratnaya-svyaz': PageBlokObratnayaSvyaz;
       'page.blok-organizacziya-meropriyatij': PageBlokOrganizacziyaMeropriyatij;
       'page.blok-s-kartoj': PageBlokSKartoj;
       'page.blok-s-tekstom': PageBlokSTekstom;

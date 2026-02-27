@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_page_blok_obratnaya_svyaz",
+  "info": {
+    "displayName": "Блок: Обратная связь",
+    "icon": "envelop"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "text": {
+      "type": "blocks"
+    },
+    "formType": {
+      "type": "string",
+      "default": "Получить консультацию"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Получить консультацию"
+    }
+  },
+  "config": {}
+}
