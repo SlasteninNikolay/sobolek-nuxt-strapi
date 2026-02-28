@@ -34,7 +34,7 @@ const cardDescription = (card) => {
           v-for="(card, idx) in items"
           :key="card.id ?? idx"
           v-reveal="{ variant: 'up', delay: idx * 90 }"
-          class="bg-white border-2 border-brown-300 rounded-3xl px-6 py-7"
+          class="bg-white border-2 border-secondary-300 rounded-3xl px-6 py-7"
         >
           <header class="flex items-center gap-4">
             <img

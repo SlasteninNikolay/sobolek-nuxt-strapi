@@ -74,7 +74,7 @@ const safeCoordinates = computed(() => {
       <div class="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-14 items-start mt-12">
         <div v-reveal="{ variant: 'left', delay: 120 }" class="h-full max-h-96">
           <div
-            class="h-full w-full rounded-3xl border-2 border-dashed border-brown-300 bg-white px-6 py-7 lg:px-8 lg:py-8"
+            class="h-full w-full rounded-3xl border-2 border-dashed border-secondary-300 bg-white px-6 py-7 lg:px-8 lg:py-8"
           >
             <h3 class="text-xl font-montserrat font-semibold text-primary">
               {{ mapName || 'База отдыха Соболек' }}

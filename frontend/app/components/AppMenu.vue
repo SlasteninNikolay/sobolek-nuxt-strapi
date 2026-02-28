@@ -38,6 +38,26 @@ const logo = computed(() => {
 
 const openSubMenus = ref([])
 
+// --- Desktop overflow menu ("...") ---
+const desktopOverflowOpen = ref(false)
+const desktopOverflowRef = ref(null)
+
+const desktopMenuLinks = computed(() => {
+  if (!props.menuData || !Array.isArray(props.menuData)) return []
+  return props.menuData.filter((item) => item.__component === 'menu.ssylka')
+})
+
+const desktopMenuVisibleLinks = computed(() => desktopMenuLinks.value.slice(0, 4))
+const desktopMenuOverflowLinks = computed(() => desktopMenuLinks.value.slice(4))
+
+const toggleDesktopOverflow = () => {
+  desktopOverflowOpen.value = !desktopOverflowOpen.value
+}
+
+const closeDesktopOverflow = () => {
+  desktopOverflowOpen.value = false
+}
+
 const isSubMenuOpen = (menuId) => {
   return openSubMenus.value.includes(menuId)
 }
@@ -58,6 +78,7 @@ const closeMobileMenu = () => {
 
 const openMobileMenu = () => {
   showPhoneWidget.value = false
+  closeDesktopOverflow()
   isMobileMenuOpen.value = !isMobileMenuOpen.value
   // при открытии меню фиксируем хедер видимым
   if (isMobileMenuOpen.value) {
@@ -71,7 +92,9 @@ const lockBodyScroll = (locked) => {
 }
 
 const onEsc = (e) => {
-  if (e.key === 'Escape') closeMobileMenu()
+  if (e.key !== 'Escape') return
+  closeMobileMenu()
+  closeDesktopOverflow()
 }
 
 const isHeaderVisible = ref(true)
@@ -140,6 +163,14 @@ const handleClickOutsideWidget = (event) => {
   }
 }
 
+const handleClickOutsideDesktopOverflow = (event) => {
+  if (!desktopOverflowRef.value) return
+  if (!desktopOverflowOpen.value) return
+  if (!desktopOverflowRef.value.contains(event.target)) {
+    closeDesktopOverflow()
+  }
+}
+
 const onSubmitted = () => {
   setTimeout(() => {
     showModal.value = false
@@ -151,6 +182,16 @@ watch(showPhoneWidget, (isOpen) => {
     document.addEventListener('click', handleClickOutsideWidget)
   } else {
     document.removeEventListener('click', handleClickOutsideWidget)
+  }
+})
+
+watch(desktopOverflowOpen, (isOpen) => {
+  if (!process.client) return
+
+  if (isOpen) {
+    document.addEventListener('click', handleClickOutsideDesktopOverflow)
+  } else {
+    document.removeEventListener('click', handleClickOutsideDesktopOverflow)
   }
 })
 
@@ -170,6 +211,7 @@ watch(
   () => {
     // на навигации закрываем меню
     if (isMobileMenuOpen.value) closeMobileMenu()
+    closeDesktopOverflow()
   }
 )
 
@@ -180,6 +222,7 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleNavbarOnScroll)
   document.removeEventListener('click', handleClickOutsideWidget)
+  document.removeEventListener('click', handleClickOutsideDesktopOverflow)
 
   if (process.client) {
     window.removeEventListener('keydown', onEsc)
@@ -216,15 +259,52 @@ const throttle = (func, limit) => {
       <!-- Десктопное меню -->
       <div class="container lg:px-0 relative hidden xl:grid grid-cols-[1fr_auto_1fr] items-center py-2 lg:py-0 h-16">
         <!-- Левая часть: Меню -->
-        <div class="flex items-center gap-4 xl:gap-8">
+        <div class="flex items-center gap-4 xl:gap-4">
           <NuxtLink
-              v-for="item in (menuData || []).filter(item => item.__component === 'menu.ssylka')"
+              v-for="item in desktopMenuVisibleLinks"
               :key="item.id"
               :to="item.url"
               class="text-primary hover:text-secondary-600 font-medium transition-colors uppercase tracking-widest text-xs xl:text-sm font-medium whitespace-nowrap"
           >
             {{ item.title }}
           </NuxtLink>
+
+          <!-- Если пунктов больше 4 — прячем остальные под "..." -->
+          <div
+            v-if="desktopMenuOverflowLinks.length"
+            ref="desktopOverflowRef"
+            class="relative"
+          >
+            <button
+              type="button"
+              class="text-primary hover:text-secondary-600 font-medium transition-colors uppercase tracking-widest text-xs xl:text-sm whitespace-nowrap px-2 py-1 rounded-md"
+              aria-label="Открыть дополнительные пункты меню"
+              :aria-expanded="desktopOverflowOpen"
+              @click.stop="toggleDesktopOverflow"
+            >
+              •••
+            </button>
+
+            <Transition name="fade">
+              <div
+                v-show="desktopOverflowOpen"
+                class="absolute left-0 top-full mt-2 min-w-52 rounded-2xl border border-gray-100 bg-white shadow-xl py-2 z-50"
+                role="menu"
+                @click.stop
+              >
+                <NuxtLink
+                  v-for="item in desktopMenuOverflowLinks"
+                  :key="item.id"
+                  :to="item.url"
+                  class="block px-4 py-2 text-primary  hover:text-primary-700 transition-colors text-sm whitespace-nowrap"
+                  role="menuitem"
+                  @click="closeDesktopOverflow"
+                >
+                  {{ item.title }}
+                </NuxtLink>
+              </div>
+            </Transition>
+          </div>
         </div>
 
         <!-- Центр: Логотип -->

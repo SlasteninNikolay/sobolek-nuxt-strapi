@@ -2,11 +2,11 @@
   <section v-reveal class="relative mt-16 lg:mt-28 pb-0 lg:pb-20 overflow-hidden">
     <div class="container relative">
       <div class="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-28">
-        <div>
+        <div class="flex flex-col items-start justify-center border border-secondary-300 rounded-3xl p-6 lg:p-0 lg:border-none">
           <app-main-heading
               tag="h2"
               :title="header?.title"
-              class="max-w-[580px]"
+              class="max-w-[480px]"
               v-reveal="{ variant: 'up', delay: 80 }"
           />
           <div class="mt-8 text-base lg:text-base lg:text-balance max-w-[580px]"

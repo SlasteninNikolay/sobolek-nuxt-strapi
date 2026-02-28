@@ -94,12 +94,12 @@ const onAfterLeave = (el: Element) => {
       <div
         v-if="resolvedItems.length"
         v-reveal="{ variant: 'zoom', delay: 200 }"
-        class="mt-10 lg:mt-16 bg-white border-2 border-dashed border-brown-300 rounded-3xl overflow-hidden"
+        class="mt-10 lg:mt-16 bg-white border-2 border-dashed border-secondary-300 rounded-3xl overflow-hidden"
       >
         <article
           v-for="(item, idx) in resolvedItems"
           :key="item?.id ?? `vacancy-${idx}`"
-          class="border-b border-brown-200 last:border-b-0"
+          class="border-b border-secondary-200 last:border-b-0"
         >
           <button
             type="button"

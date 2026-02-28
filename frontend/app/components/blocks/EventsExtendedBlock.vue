@@ -74,7 +74,7 @@ const onSubmitted = () => {
               :class="idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'"
             >
               <div
-                class="h-full bg-white border-2 border-dashed border-brown-300 rounded-3xl px-6 py-7 lg:px-10 lg:py-10"
+                class="h-full bg-white border-2 border-dashed border-secondary-300 rounded-3xl px-6 py-7 lg:px-10 lg:py-10"
               >
                 <div
                   v-if="tab?.content"

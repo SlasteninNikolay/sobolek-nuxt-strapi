@@ -1,14 +1,17 @@
 <script setup>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination, Navigation, EffectCreative, Grid } from 'swiper/modules';
-import { useAttrs } from 'vue';
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination, Navigation, EffectCreative, Grid } from 'swiper/modules'
+import { computed, ref, useAttrs, useSlots } from 'vue'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-creative';
 import 'swiper/css/grid';
-import { useSlots } from 'vue';
-import { computed } from 'vue';
+
+// Важно: иначе class/style и директивы (v-reveal) применяются к корневому компоненту,
+// а не к DOM-элементу, что приводит к предупреждению:
+// "Runtime directive used on component with non-element root node".
+defineOptions({ inheritAttrs: false })
 
 const props = defineProps({
   gridMode: { type: Boolean, default: false },
@@ -17,6 +20,34 @@ const props = defineProps({
 const sliderComponent = ref(null)
 const attrs = useAttrs();
 const slots = useSlots();
+
+const isWrapperAttrKey = (key) => {
+  return (
+    key === 'class' ||
+    key === 'style' ||
+    key === 'id' ||
+    key === 'title' ||
+    key === 'role' ||
+    key.startsWith('data-') ||
+    key.startsWith('aria-')
+  )
+}
+
+const wrapperAttrs = computed(() => {
+  const out = {}
+  for (const [key, value] of Object.entries(attrs)) {
+    if (isWrapperAttrKey(key)) out[key] = value
+  }
+  return out
+})
+
+const swiperAttrOptions = computed(() => {
+  const out = {}
+  for (const [key, value] of Object.entries(attrs)) {
+    if (!isWrapperAttrKey(key)) out[key] = value
+  }
+  return out
+})
 
 function getSlides() {
   const vnodes = slots.default?.() || [];
@@ -75,22 +106,29 @@ const swiperOptions = computed(() => {
         },
       };
 
-  return { ...baseOptions, ...attrs };
+  return { ...baseOptions, ...swiperAttrOptions.value };
 });
 </script>
 
 <template>
-  <ClientOnly>
-    <Swiper
-        ref="sliderComponent"
-        v-bind="swiperOptions"
-        class="w-full h-full grid-slider"
-    >
-      <SwiperSlide v-for="(vnode, idx) in getSlides()" :key="idx">
-        <component :is="vnode" />
-      </SwiperSlide>
-    </Swiper>
-  </ClientOnly>
+  <!--
+    Оборачиваем в DOM-элемент, чтобы директивы (например, v-reveal)
+    корректно работали при использовании компонента как:
+    <base-app-slider v-reveal ... />
+  -->
+  <div v-bind="wrapperAttrs" class="app-slider">
+    <ClientOnly>
+      <Swiper
+          ref="sliderComponent"
+          v-bind="swiperOptions"
+          class="w-full h-full grid-slider"
+      >
+        <SwiperSlide v-for="(vnode, idx) in getSlides()" :key="idx">
+          <component :is="vnode" />
+        </SwiperSlide>
+      </Swiper>
+    </ClientOnly>
+  </div>
 </template>
 
 <style scoped>

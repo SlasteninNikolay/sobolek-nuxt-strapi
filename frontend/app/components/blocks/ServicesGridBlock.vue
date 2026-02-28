@@ -53,7 +53,7 @@ const imgSrc = (item) => {
           <!-- content - занимает 2 колонки -->
           <div
               v-reveal="{ variant: idx % 2 === 0 ? 'left' : 'right', delay: idx * 110 + 120 }"
-              class="bg-white border-2 border-dashed border-brown-300 rounded-3xl px-6 py-7 lg:px-10 lg:py-10 flex flex-col gap-4 justify-start lg:col-span-2"
+              class="bg-white border-2 border-dashed border-secondary-300 rounded-3xl px-6 py-7 lg:px-10 lg:py-10 flex flex-col gap-4 justify-start lg:col-span-2"
               :class="idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'"
           >
             <h3 class="mt-3 text-lg/6 lg:text-xl font-montserrat font-semibold text-primary text-balance">
