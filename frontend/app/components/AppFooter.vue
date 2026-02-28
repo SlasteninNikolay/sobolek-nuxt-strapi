@@ -3,6 +3,8 @@ const route = useRoute()
 const config = useRuntimeConfig();
 const strapiUrl = config.public.strapiUrl;
 
+const currentYear = new Date().getFullYear()
+
 const locale = computed(() => {
   return route.query.locale || 'ru'
 })
@@ -52,6 +54,12 @@ const logo = computed(() => {
   const item = menuData.value.find(i => i.__component === 'menu.logo');
   return item?.logo?.url || null;
 });
+
+function scrollToTop() {
+  if (process.client) {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
 </script>
 
 <template>
@@ -99,7 +107,45 @@ const logo = computed(() => {
           </div>
         </div>
       </div>
+    </div>
 
+    <div class="border-t border-white/10">
+      <div class="container mx-auto px-4 py-10">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <p class="text-sm text-white/50">
+            © {{ currentYear }}, База отдыха Соболек
+          </p>
+
+          <button
+            type="button"
+            class="inline-flex h-10 w-10 items-center justify-center self-end text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 sm:self-auto"
+            aria-label="Наверх"
+            @click="scrollToTop"
+          >
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="h-8 w-8"
+              fill="none"
+            >
+              <path
+                d="M12 20V5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M6.5 10.5L12 5l5.5 5.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </footer>
 </template>

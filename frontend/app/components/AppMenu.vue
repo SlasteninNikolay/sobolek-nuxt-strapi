@@ -376,7 +376,7 @@ const throttle = (func, limit) => {
             <a
                 ref="phoneButtonRef"
                 class="flex items-center justify-center border p-1 border-secondary-600 rounded-full"
-                href="tel:+73904250900"
+                href="tel:+73953282287"
                 @click="handlePhoneButtonClick"
             >
               <Icon
