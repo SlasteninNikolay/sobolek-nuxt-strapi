@@ -29,13 +29,20 @@ const htmlDescription = computed(() => richTextToHtml(props.description))
             tag="h2"
             :title="header?.title"
             class="col-span-2"
+            v-reveal="{ variant: 'up', delay: 80 }"
         />
-        <div class="col-span-3 max-w-3xl text-base xl:text-lg font-regular xl:font-medium text-balance" v-if="description" v-html="htmlDescription"></div>
+        <div
+          v-if="description"
+          v-reveal="{ variant: 'fade', delay: 140 }"
+          class="col-span-3 max-w-3xl text-base xl:text-lg font-regular xl:font-medium text-balance"
+          v-html="htmlDescription"
+        ></div>
       </div>
       <div class="grid grid-cols-1 gap-14">
         <room-card
             v-for="(room, index) in hotel_rooms"
             :key="index"
+            v-reveal="{ variant: 'up', delay: index * 90 }"
             :room="room"
         />
       </div>

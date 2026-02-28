@@ -1,5 +1,5 @@
 <template>
-  <section class="relative mt-16 lg:mt-28 pb-0 lg:pb-20 overflow-hidden">
+  <section v-reveal class="relative mt-16 lg:mt-28 pb-0 lg:pb-20 overflow-hidden">
     <div class="container relative">
       <div class="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-28">
         <div>
@@ -7,15 +7,18 @@
               tag="h2"
               :title="header?.title"
               class="max-w-[580px]"
+              v-reveal="{ variant: 'up', delay: 80 }"
           />
           <div class="mt-8 text-base lg:text-base lg:text-balance max-w-[580px]"
                v-if="description"
+               v-reveal="{ variant: 'fade', delay: 140 }"
                v-html="htmlDescription"
           ></div>
         </div>
         <!--   /left part    -->
         <div v-if="images && images.length > 0">
           <base-app-image
+              v-reveal="{ variant: 'right', delay: 200 }"
               img-class="w-full max-h-[600px] border-[10px] border-white rounded-2xl object-cover object-bottom border translate-y-[40px] lg:-translate-x-[30px] lg:translate-y-[30px] rotate-[3deg]"
               :image="images[0]"
               loading="lazy"
@@ -26,12 +29,13 @@
       <div class="py-20 lg:py-28">
 
         <base-app-slider
+            v-reveal="{ variant: 'up', delay: 240 }"
             slidesPerView="4"
             spaceBetween="30"
             :breakpoints="{
                 0:   { slidesPerView: 1 },
                 640: { slidesPerView: 2 },
-                1024: { slidesPerView: 4  }
+                1200: { slidesPerView: 4  }
               }"
             :effect="'fade'"
             class="flex items-start justify-between h-auto w-full"

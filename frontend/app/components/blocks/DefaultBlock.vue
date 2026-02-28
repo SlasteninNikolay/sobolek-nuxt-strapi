@@ -3,7 +3,11 @@
 </script>
 
 <template>
-<h1>DEFAULT</h1>
+  <section v-reveal class="py-14 bg-white">
+    <div class="container">
+      <h1 class="text-2xl font-semibold text-primary">DEFAULT</h1>
+    </div>
+  </section>
 </template>
 
 <style scoped>

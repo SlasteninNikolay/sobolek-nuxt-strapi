@@ -10,7 +10,7 @@ const htmlDescription = computed(() => richTextToHtml(props.description))
 </script>
 
 <template>
-  <section class="relative py-24 overflow-hidden">
+  <section v-reveal class="relative py-24 overflow-hidden">
     <object class="hidden lg:block absolute top-0 left-1/2 -translate-x-1/2 z-0" type="image/svg+xml" data="/images/svg/route-5.svg"></object>
     <object class="absolute top-0 -translate-y-[10%] left-0 max-h-[900px] -z-10" type="image/svg+xml" data="/images/svg/sea-2.svg"></object>
     <div class="container">
@@ -18,10 +18,16 @@ const htmlDescription = computed(() => richTextToHtml(props.description))
         <app-main-heading
             tag="h2"
             :title="header?.title"
+            v-reveal="{ variant: 'up', delay: 80 }"
         />
-        <div class="max-w-2xl text-lg font-medium text-balance" v-if="description" v-html="htmlDescription"></div>
+        <div
+          v-reveal="{ variant: 'fade', delay: 140 }"
+          class="max-w-2xl text-lg font-medium text-balance"
+          v-if="description"
+          v-html="htmlDescription"
+        ></div>
       </div>
-      <div class="w-full border-[10px] border-white rounded-2xl">
+      <div v-reveal="{ variant: 'zoom', delay: 200 }" class="w-full border-[10px] border-white rounded-2xl">
         <BaseAppYandexMap 
           class="rounded-2xl" 
           :coordinates="[101.64750939753344,56.211554533662536]"

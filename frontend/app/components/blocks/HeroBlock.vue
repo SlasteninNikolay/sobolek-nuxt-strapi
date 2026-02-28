@@ -1,6 +1,6 @@
 
 <template>
-  <section class="hero mt-14" :class="header?.theme">
+  <section v-reveal="{ variant: 'fade' }" class="hero mt-14" :class="header?.theme">
     <div class="container">
       <div class="hero__content w-full flex flex-col gap-6 lg:gap-8">
         <!-- Slider Section -->
@@ -18,7 +18,7 @@
                 <div class="slide-content relative w-full h-full rounded-2xl overflow-hidden">
                   <app-image
                     mode="rounded"
-                    img-class="w-full aspect-4/3 object-cover object-center border-none"
+                    img-class="w-full aspect-square sm:aspect-4/3 max-h-[50vh] object-cover object-center border-none"
                     :image="slide.image"
                     :loading="index === 0 ? 'eager' : 'lazy'"
                     :fetchpriority="index === 0 ? 'high' : undefined"
@@ -117,12 +117,7 @@ const swiperOptions = {
       slidesPerView: 1.5,
       centeredSlides: true,
       spaceBetween: 20,
-    },
-    1024: {
-      slidesPerView: 1.5,
-      centeredSlides: true,
-      spaceBetween: 20,
-    },
+    }
   },
   loop: true,
   loopedSlides: 3,

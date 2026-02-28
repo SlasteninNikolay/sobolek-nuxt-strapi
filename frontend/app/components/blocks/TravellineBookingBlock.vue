@@ -1,5 +1,5 @@
 <template>
-  <section class="pt-10 pb-20 md:py-24 bg-white">
+  <section v-reveal class="pt-10 pb-20 md:py-24 bg-white">
     <div class="container">
       <!-- start TL Booking form script -->
       <div id="tl-booking-form"></div>

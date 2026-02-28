@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_page_blok_vakansiis",
+  "info": {
+    "displayName": "Блок: Вакансии",
+    "icon": "briefcase",
+    "description": "Секция вакансий: заголовок + текст + список вакансий"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "component": "page.zagolovok",
+      "repeatable": false
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "items": {
+      "type": "component",
+      "component": "page.vakansiya",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -54,6 +54,9 @@ const loadBlockComponent = (componentType) => {
     'page.blok-organizacziya-meropriyatij': defineAsyncComponent(() =>
         import('@/components/blocks/EventsBlock.vue')
     ),
+    'page.blok-organizacziya-meropriyatij-rasshirennyj': defineAsyncComponent(() =>
+        import('@/components/blocks/EventsExtendedBlock.vue')
+    ),
     'page.blok-uchebnye-korpusa': defineAsyncComponent(() =>
         import('~/components/blocks/ActivityBlock.vue')
     ),
@@ -68,6 +71,9 @@ const loadBlockComponent = (componentType) => {
     ),
     'page.blok-s-tekstom': defineAsyncComponent(() =>
         import('@/components/blocks/TextBlock.vue')
+    ),
+    'page.blok-vakansii': defineAsyncComponent(() =>
+        import('@/components/blocks/VacanciesBlock.vue')
     ),
   }
   return componentMap[componentType] || null

@@ -1,6 +1,6 @@
 
 <template>
-  <section class="hero relative mt-12 lg:mt-14 pb-16 lg:pb-24" :class="header?.theme">
+  <section v-reveal="{ variant: 'fade' }" class="hero relative mt-12 lg:mt-14 pb-16 lg:pb-24" :class="header?.theme">
     <div class="container">
       <div class="hero__content w-full grid grid-cols-1 lg:grid-cols-1 gap-6 lg:gap-8 items-center">
         <!-- Images - на мобилке будет первым -->

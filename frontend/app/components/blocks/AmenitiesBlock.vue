@@ -13,13 +13,12 @@ const props = defineProps({
 const items = computed(() => (props.cards || []).filter(Boolean))
 
 const cardDescription = (card) => {
-  // В Strapi это поле blocks, на фронте превращаем в HTML
   return richTextToHtml(card?.content)
 }
 </script>
 
 <template>
-  <section class="relative py-16 lg:py-28 bg-white overflow-hidden">
+  <section v-reveal class="relative py-16 lg:py-24 bg-white overflow-hidden">
     <div class="container">
       <app-main-heading
         tag="h2"
@@ -29,11 +28,12 @@ const cardDescription = (card) => {
 
       <div
         v-if="items.length"
-        class="mt-10 lg:mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10"
+        class="lg:mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10"
       >
         <article
           v-for="(card, idx) in items"
           :key="card.id ?? idx"
+          v-reveal="{ variant: 'up', delay: idx * 90 }"
           class="bg-white border-2 border-brown-300 rounded-3xl px-6 py-7"
         >
           <header class="flex items-center gap-4">

@@ -36,7 +36,7 @@ const swiperOptions = {
       slidesPerView: 3.5,
       centeredSlides: true,
     },
-    1024: {
+    1200: {
       slidesPerView: 5,
       centeredSlides: true,
     },
@@ -47,7 +47,7 @@ const htmlDescription = computed(() => richTextToHtml(props.description))
 </script>
 
 <template>
-  <section class="relative py-16 lg:py-28 overflow-hidden">
+  <section v-reveal class="relative py-16 lg:py-28 overflow-hidden">
     <object class="absolute top-0 right-0 h-auto lg:h-full -z-20" type="image/svg+xml" data="/images/svg/route-3.svg"></object>
     <div class="container">
       <div class="flex flex-col lg:grid lg:grid-cols-2 mb-6 lg:mb-14 gap-6 lg:gap-14">
@@ -55,12 +55,18 @@ const htmlDescription = computed(() => richTextToHtml(props.description))
             tag="h2"
             :title="header?.title"
             class="max-w-[480px]"
+            v-reveal="{ variant: 'up', delay: 80 }"
         />
-        <div class="max-w-2xl text-base lg:text-lg font-regular lg:font-medium text-balance" v-if="description" v-html="htmlDescription"></div>
+        <div
+          v-if="description"
+          v-reveal="{ variant: 'fade', delay: 140 }"
+          class="max-w-2xl text-base lg:text-lg font-regular lg:font-medium text-balance"
+          v-html="htmlDescription"
+        ></div>
       </div>
 
       <!-- Фиксированный контейнер для слайдера -->
-      <div class="slider-container">
+      <div v-reveal="{ variant: 'zoom', delay: 200 }" class="slider-container">
         <ClientOnly>
           <Swiper
               ref="sliderComponent"

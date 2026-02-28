@@ -19,7 +19,7 @@ const imgSrc = (item) => {
 </script>
 
 <template>
-  <section class="relative py-16 lg:py-28 bg-white overflow-hidden">
+  <section v-reveal class="relative py-16 lg:py-28 bg-white overflow-hidden">
     <div class="container">
       <app-main-heading
         tag="h2"
@@ -31,10 +31,12 @@ const imgSrc = (item) => {
         <article
             v-for="(item, idx) in list"
             :key="item.id ?? idx"
+            v-reveal="{ variant: 'fade', delay: idx * 110 }"
             class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 items-stretch"
         >
           <!-- media - занимает 1 колонку -->
           <div
+              v-reveal="{ variant: idx % 2 === 0 ? 'right' : 'left', delay: idx * 110 + 60 }"
               class="rounded-3xl overflow-hidden min-h-[220px] lg:min-h-[260px] lg:col-span-1"
               :class="idx % 2 === 0 ? 'lg:order-2' : 'lg:order-1'"
           >
@@ -50,6 +52,7 @@ const imgSrc = (item) => {
 
           <!-- content - занимает 2 колонки -->
           <div
+              v-reveal="{ variant: idx % 2 === 0 ? 'left' : 'right', delay: idx * 110 + 120 }"
               class="bg-white border-2 border-dashed border-brown-300 rounded-3xl px-6 py-7 lg:px-10 lg:py-10 flex flex-col gap-4 justify-start lg:col-span-2"
               :class="idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'"
           >

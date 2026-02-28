@@ -29,10 +29,10 @@
     </div>
 
     <VeeForm
-        @submit="onSubmit"
-        :validation-schema="schema"
-        v-slot="{ errors, meta }"
-        class="space-y-4"
+      @submit="onSubmit"
+      :validation-schema="schema"
+      v-slot="{ errors, meta }"
+      :class="props.variant === 'feedback' ? 'space-y-6' : 'space-y-4'"
     >
       <!-- Поле имени -->
       <div>
@@ -83,31 +83,11 @@
         <VeeErrorMessage name="phone" class="h-5 mt-1 text-red-500 text-xs" />
       </div>
 
-      <!-- Чекбокс согласия -->
-      <div class="flex items-start">
-        <div class="flex items-center h-5">
-          <VeeField
-              name="agree"
-              type="checkbox"
-              value="true"
-              class="h-4 w-4 text-accent border-gray-300 rounded focus:outline-secondary-200"
-              :disabled="isSubmitting"
-              :class="{ 'border-red-500': errors.agree }"
-          />
-        </div>
-        <div class="ml-3">
-          <label for="agree" class="relative bottom-[2px] font-light text-xs text-gray-700">
-            Я согласен с <a class="text-secondary hover:text-secondary-300" href="/politic" target="_blank">политикой конфиденциальности</a> и <a class="text-secondary hover:text-secondary-300" href="/user-agreement" target="_blank">пользовательским соглашением</a>
-          </label>
-          <VeeErrorMessage name="agree" class="block h-5 mt-1 text-red-500 text-xs" />
-        </div>
-      </div>
-
       <!-- Кнопка отправки -->
       <button
-          type="submit"
-          :disabled="!meta.valid || isSubmitting"
-          :class="submitButtonClasses"
+        type="submit"
+        :disabled="!meta.valid || isSubmitting"
+        :class="submitButtonClasses"
       >
         <span v-if="isSubmitting" class="flex items-center">
           <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
@@ -118,6 +98,26 @@
         </span>
         <span v-else>{{ submitLabel }}</span>
       </button>
+
+      <!-- Чекбокс согласия -->
+      <div class="flex items-start">
+        <div class="flex items-center h-5">
+          <VeeField
+            name="agree"
+            type="checkbox"
+            value="true"
+            class="h-4 w-4 text-accent border-gray-300 rounded focus:outline-secondary-200"
+            :disabled="isSubmitting"
+            :class="{ 'border-red-500': errors.agree }"
+          />
+        </div>
+        <div class="ml-3">
+          <label for="agree" class="relative bottom-[2px] font-light text-xs text-gray-700">
+            Я согласен с <a class="text-secondary hover:text-secondary-300" href="/politic" target="_blank">политикой конфиденциальности</a> и <a class="text-secondary hover:text-secondary-300" href="/user-agreement" target="_blank">пользовательским соглашением</a>
+          </label>
+          <VeeErrorMessage name="agree" class="block h-5 mt-1 text-red-500 text-xs" />
+        </div>
+      </div>
     </VeeForm>
   </div>
 </template>
@@ -198,10 +198,11 @@ const submitButtonClasses = computed(() => {
   if (props.variant === 'feedback') {
     return [
       width,
-      'mt-2 inline-flex justify-center px-8 py-3 rounded-xl text-sm font-medium text-white',
-      'bg-secondary hover:bg-secondary-300',
+      'mt-1 inline-flex justify-center px-8 py-3 rounded-xl text-sm font-medium',
+      'border border-secondary text-secondary bg-transparent hover:bg-secondary hover:text-white',
       'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary',
-      'disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors',
+      'disabled:border-gray-300 disabled:text-gray-400 disabled:bg-transparent disabled:hover:bg-transparent disabled:hover:text-gray-400',
+      'disabled:cursor-not-allowed transition-colors',
     ].join(' ')
   }
 

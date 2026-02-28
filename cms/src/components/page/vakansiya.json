@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_page_vakansiyas",
+  "info": {
+    "displayName": "Вакансия",
+    "icon": "briefcase",
+    "description": "Элемент списка вакансий: заголовок + описание"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

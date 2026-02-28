@@ -58,11 +58,11 @@ const safeCoordinates = computed(() => {
 </script>
 
 <template>
-  <section class="relative py-16 lg:py-24 overflow-hidden bg-white">
+  <section v-reveal class="relative pt-16 lg:pt-24 overflow-hidden bg-white">
     <object
       class="hidden lg:block absolute top-0 left-1/2 -translate-x-1/2 z-0"
       type="image/svg+xml"
-      data="/images/svg/route-2.svg"
+      data="/images/svg/route-6.svg"
     ></object>
 
     <div class="container relative z-10">
@@ -71,10 +71,10 @@ const safeCoordinates = computed(() => {
           :title="header?.title"
           class="max-w-[580px]"
       />
-      <div class="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-10 items-start mt-12">
-        <div class="h-full max-h-96">
+      <div class="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-14 items-start mt-12">
+        <div v-reveal="{ variant: 'left', delay: 120 }" class="h-full max-h-96">
           <div
-            class="h-full max-w-xl rounded-3xl border-2 border-dashed border-brown-300 bg-white px-6 py-7 lg:px-8 lg:py-8"
+            class="h-full w-full rounded-3xl border-2 border-dashed border-brown-300 bg-white px-6 py-7 lg:px-8 lg:py-8"
           >
             <h3 class="text-xl font-montserrat font-semibold text-primary">
               {{ mapName || 'База отдыха Соболек' }}
@@ -137,7 +137,7 @@ const safeCoordinates = computed(() => {
           </div>
         </div>
 
-        <div class="w-full">
+        <div v-reveal="{ variant: 'right', delay: 200 }" class="w-full">
           <div class="w-full h-full max-h-96 rounded-3xl overflow-hidden">
             <BaseAppYandexMap
               class="rounded-2xl"
@@ -163,9 +163,9 @@ const safeCoordinates = computed(() => {
   position: absolute;
   top: 100%;
   left: 0;
-  transform: translateY(25%);
-  width: 80%;
-  height: 22px;
+  transform: translateY(15%);
+  width: 200%;
+  height: 32px;
   background: url("/images/svg/line-3.svg") no-repeat;
   background-size: contain;
   z-index: -1;

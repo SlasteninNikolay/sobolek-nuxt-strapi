@@ -1,5 +1,5 @@
 <template>
-  <div id="block-search" class="mx-auto">
+  <div id="block-search" v-reveal class="mx-auto">
     <div id="tl-search-form" class="tl-container px-4">
       <noindex><a href="https://www.travelline.ru/products/tl-hotel/" rel="nofollow" target="_blank">TravelLine</a></noindex>
     </div>

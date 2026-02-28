@@ -47,7 +47,9 @@ watch(() => props.show, (newVal) => {
         aria-modal="true"
     >
       <div class="modal-overlay bg-primary/80 w-full h-full z-0 absolute top-0 left-0" @click="$emit('close')"></div>
-      <div class="modal-container w-full max-w-[90%] md:max-w-xl mx-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 max-h-[80vh] flex flex-col">
+      <div
+          class="modal-container w-full max-w-[90%] md:max-w-xl mx-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 max-h-[80vh] flex flex-col"
+      >
         <div class="modal-header bg-secondary text-white leading-none uppercase font-medium flex items-center justify-between ps-8 pe-4 py-3 flex-shrink-0 rounded-t-lg bg-[url('/images/svg/pattern.svg')] bg-contain bg-center bg-blend-soft-light">
           <slot name="header"></slot>
           <button
@@ -59,7 +61,10 @@ watch(() => props.show, (newVal) => {
           </button>
         </div>
 
-        <div class="modal-body flex-1 overflow-x-hidden overflow-y-auto bg-white" :class="{ 'border-2 border-secondary': mode === 'pdf' }">
+        <div
+            class="modal-body flex-1 overflow-x-hidden overflow-y-auto bg-white"
+            :class="{ 'border-2 border-secondary': mode === 'pdf' }"
+        >
           <slot
               name="body"
               :page="mode === 'pdf' ? showAllPages : null"

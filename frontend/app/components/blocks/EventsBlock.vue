@@ -34,7 +34,7 @@ const onSubmitted = () => {
 </script>
 
 <template>
-  <section class="relative pt-16 pb-8 lg:pb-16 lg:pt-28 bg-white overflow-x-hidden">
+  <section v-reveal class="relative pt-16 pb-8 lg:pb-16 lg:pt-28 bg-white overflow-x-hidden">
     <object class="absolute bottom-0 left-0 w-auto lg:w-full z-0" type="image/svg+xml" data="/images/svg/wave.svg"></object>
     <div class="container">
       <div class="flex flex-col lg:grid lg:grid-cols-2 mb-6 lg:mb-14 gap-6 lg:gap-14">
@@ -43,9 +43,14 @@ const onSubmitted = () => {
             :title="header?.title"
             class="max-w-[480px]"
         />
-        <div class="max-w-2xl text-base lg:text-lg font-regular lg:font-medium text-balance" v-if="description" v-html="htmlDescription"></div>
+        <div
+          v-reveal="{ variant: 'fade', delay: 120 }"
+          class="max-w-2xl text-base lg:text-lg font-regular lg:font-medium text-balance"
+          v-if="description"
+          v-html="htmlDescription"
+        ></div>
       </div>
-      <app-tabs>
+      <app-tabs v-reveal="{ variant: 'up', delay: 160 }">
         <app-tab
             v-for="(tab, index) in tabs"
             :key="index"
@@ -118,4 +123,5 @@ const onSubmitted = () => {
     left: 50%;
   }
 }
+
 </style>

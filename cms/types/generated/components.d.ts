@@ -128,6 +128,20 @@ export interface PageBlokOrganizacziyaMeropriyatij
   };
 }
 
+export interface PageBlokOrganizacziyaMeropriyatijRasshirennyj
+  extends Struct.ComponentSchema {
+  collectionName: 'components_page_blok_organizacziya_meropriyatij_rasshirennyj';
+  info: {
+    displayName: '\u0411\u043B\u043E\u043A \u043E\u0440\u0433\u0430\u043D\u0438\u0437\u0430\u0446\u0438\u044F \u043C\u0435\u0440\u043E\u043F\u0440\u0438\u044F\u0442\u0438\u0439 (\u0440\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u043D\u044B\u0439)';
+    icon: 'star';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    header: Schema.Attribute.Component<'page.zagolovok', false>;
+    tabs: Schema.Attribute.Component<'page.taby', true>;
+  };
+}
+
 export interface PageBlokSKartoj extends Struct.ComponentSchema {
   collectionName: 'components_page_blok_s_kartoj';
   info: {
@@ -189,6 +203,20 @@ export interface PageBlokUslugiSetka extends Struct.ComponentSchema {
   attributes: {
     header: Schema.Attribute.Component<'page.zagolovok', false>;
     items: Schema.Attribute.Component<'page.usluga-setka-element', true>;
+  };
+}
+
+export interface PageBlokVakansii extends Struct.ComponentSchema {
+  collectionName: 'components_page_blok_vakansiis';
+  info: {
+    description: '\u0421\u0435\u043A\u0446\u0438\u044F \u0432\u0430\u043A\u0430\u043D\u0441\u0438\u0439: \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A + \u0442\u0435\u043A\u0441\u0442 + \u0441\u043F\u0438\u0441\u043E\u043A \u0432\u0430\u043A\u0430\u043D\u0441\u0438\u0439';
+    displayName: '\u0411\u043B\u043E\u043A: \u0412\u0430\u043A\u0430\u043D\u0441\u0438\u0438';
+    icon: 'briefcase';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    header: Schema.Attribute.Component<'page.zagolovok', false>;
+    items: Schema.Attribute.Component<'page.vakansiya', true>;
   };
 }
 
@@ -413,6 +441,19 @@ export interface PageUslugaSetkaElement extends Struct.ComponentSchema {
   };
 }
 
+export interface PageVakansiya extends Struct.ComponentSchema {
+  collectionName: 'components_page_vakansiyas';
+  info: {
+    description: '\u042D\u043B\u0435\u043C\u0435\u043D\u0442 \u0441\u043F\u0438\u0441\u043A\u0430 \u0432\u0430\u043A\u0430\u043D\u0441\u0438\u0439: \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A + \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435';
+    displayName: '\u0412\u0430\u043A\u0430\u043D\u0441\u0438\u044F';
+    icon: 'briefcase';
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface PageZagolovok extends Struct.ComponentSchema {
   collectionName: 'components_page_zagolovok';
   info: {
@@ -448,11 +489,13 @@ declare module '@strapi/strapi' {
       'page.blok-kontakty': PageBlokKontakty;
       'page.blok-obratnaya-svyaz': PageBlokObratnayaSvyaz;
       'page.blok-organizacziya-meropriyatij': PageBlokOrganizacziyaMeropriyatij;
+      'page.blok-organizacziya-meropriyatij-rasshirennyj': PageBlokOrganizacziyaMeropriyatijRasshirennyj;
       'page.blok-s-kartoj': PageBlokSKartoj;
       'page.blok-s-tekstom': PageBlokSTekstom;
       'page.blok-s-uslugami': PageBlokSUslugami;
       'page.blok-uchebnye-korpusa': PageBlokUchebnyeKorpusa;
       'page.blok-uslugi-setka': PageBlokUslugiSetka;
+      'page.blok-vakansii': PageBlokVakansii;
       'page.info-blok': PageInfoBlok;
       'page.kartochka': PageKartochka;
       'page.kartochka-uslugi': PageKartochkaUslugi;
@@ -468,6 +511,7 @@ declare module '@strapi/strapi' {
       'page.taby': PageTaby;
       'page.udobstva': PageUdobstva;
       'page.usluga-setka-element': PageUslugaSetkaElement;
+      'page.vakansiya': PageVakansiya;
       'page.zagolovok': PageZagolovok;
       'seo.meta-field': SeoMetaField;
     }
