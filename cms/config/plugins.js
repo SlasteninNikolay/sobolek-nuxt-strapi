@@ -16,13 +16,16 @@ export default ({ env }) => ({
             provider: 'nodemailer',
             providerOptions: {
                 host: env('SMTP_HOST', ''),
+                // Если у провайдера указан SMTPS (обычно 465), то нужен secure=true.
+                // Для 587 обычно используется STARTTLS (secure=false + requireTLS=true).
                 port: env.int('SMTP_PORT', 587),
-                secure: env.bool('SMTP_SECURE', false),
+                secure: env.bool('SMTP_SECURE', env.int('SMTP_PORT', 587) === 465),
                 auth: {
                     user: env('SMTP_USERNAME'),
                     pass: env('SMTP_PASSWORD'),
                 },
-                requireTLS: env.bool('SMTP_REQUIRE_TLS', true),
+                // Для SMTPS (465) requireTLS не нужен, иначе можно получить проблемы при коннекте.
+                requireTLS: env.bool('SMTP_REQUIRE_TLS', env.int('SMTP_PORT', 587) !== 465),
                 ignoreTLS: env.bool('SMTP_IGNORE_TLS', false),
                 tls: {
                     rejectUnauthorized: env.bool('SMTP_TLS_REJECT_UNAUTHORIZED', false),
