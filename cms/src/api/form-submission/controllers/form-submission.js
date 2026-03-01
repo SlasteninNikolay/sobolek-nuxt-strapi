@@ -30,10 +30,26 @@ module.exports = factories.createCoreController(
                 // Отправляем email с noreply ящика
                 if (process.env.SEND_EMAILS !== 'false') {
                     try {
+                        const hasEmailPlugin = Boolean(strapi.plugins?.email?.services?.email?.send);
+                        if (!hasEmailPlugin) {
+                            strapi.log.error('[form-submission] Email plugin is not available. Check @strapi/provider-email-nodemailer installation and cms/config/plugins.js');
+                        }
+
+                        const smtpFrom = process.env.SMTP_DEFAULT_FROM;
+                        const smtpReplyTo = process.env.SMTP_DEFAULT_REPLY_TO;
+
+                        if (!process.env.SMTP_HOST || !process.env.SMTP_USERNAME || !process.env.SMTP_PASSWORD) {
+                            strapi.log.error('[form-submission] SMTP env is missing (SMTP_HOST/SMTP_USERNAME/SMTP_PASSWORD). Email will not be sent.');
+                        }
+
+                        if (!smtpFrom) {
+                            strapi.log.warn('[form-submission] SMTP_DEFAULT_FROM is not set. Provider may reject sending.');
+                        }
+
                         await strapi.plugins['email'].services.email.send({
                             to: adminEmails,
-                            from: process.env.SMTP_DEFAULT_FROM,
-                            replyTo: process.env.SMTP_DEFAULT_REPLY_TO,
+                            from: smtpFrom,
+                            replyTo: smtpReplyTo,
                             subject: `📋 Новая заявка: ${formType || 'контактная форма'}`,
                             html: `
                                 <div style="font-family: Montserrat, sans-serif; max-width: 600px;">
@@ -63,8 +79,10 @@ module.exports = factories.createCoreController(
                               `,
                         });
 
+                        strapi.log.info(`[form-submission] Email sent to: ${adminEmails.join(', ')}`);
+
                     } catch (emailError) {
-                        console.error('❌ Ошибка отправки email:', emailError);
+                        strapi.log.error('❌ Ошибка отправки email:', emailError);
                     }
                 } else {
                     strapi.log.info('Email sending is disabled by SEND_EMAILS=false');
