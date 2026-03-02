@@ -13,21 +13,21 @@ export default defineNuxtConfig({
   },
 app: {
     head: {
-        title: 'Соболек - официальный сайт',
+        title: 'База отдыха Соболек г. Братск - официальный сайт',
         htmlAttrs: {
             lang: 'ru'
         },
         meta: [
-            { name: 'description', content: 'Турбаза на черном море' },
-            { name: 'keywords', content: 'турбаза, гостиница, отель, красная щель, отдых, бронь' },
+            { name: 'description', content: 'Уютные домики, беседки с мангалом, баня и рыбалка. Отличное место для семейного и корпоративного отдыха. Забронируйте номер на официальном сайте базы отдыха «Соболек»!' },
+            { name: 'keywords', content: 'база отдыха, турбаза, гостиница, отель, Братск, отдых, бронь' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
             { name: 'robots', content: 'index,follow' },
-            { property: 'og:title', content: 'Соболек - официальный сайт' },
-            { property: 'og:description', content: 'Турбаза на черном море' },
+            { property: 'og:title', content: 'База отдыха Соболек г. Братск - официальный сайт' },
+            { property: 'og:description', content: 'Уютные домики, беседки с мангалом, баня и рыбалка. Отличное место для семейного и корпоративного отдыха. Забронируйте номер на официальном сайте базы отдыха «Соболек»!' },
             { property: 'og:type', content: 'website' },
             { property: 'og:url', content: 'https://sobolek-bratsk.ru' },
             { property: 'og:image', content: '/images/default-image.jpg' },
-            { property: 'og:site_name', content: 'Соболек' },
+            { property: 'og:site_name', content: 'База отдыха Соболек г. Братск - официальный сайт' },
             { property: 'og:locale', content: 'ru_RU' },
             { name: 'twitter:card', content: 'summary_large_image' },
             { name: 'twitter:image', content: '/images/default-image.jpg' },
@@ -64,7 +64,7 @@ app: {
             devSourcemap: true,
         },
         build: {
-            cssCodeSplit: true, // Разделять CSS по компонентам
+            cssCodeSplit: true,
             minify: 'esbuild',
             rollupOptions: {
                 output: {
@@ -77,10 +77,10 @@ app: {
         }
     },
     experimental: {
-        inlineSSRStyles: true, // Встраивает критический CSS в HTML
+        inlineSSRStyles: true,
     },
     features: {
-        inlineStyles: true // Включает инлайнинг стилей
+        inlineStyles: true
     },
     css: ['~/assets/css/main.css'],
     icon: {
