@@ -21,8 +21,8 @@ const htmlDescription = computed(() => richTextToHtml(props.description))
 
 <template>
   <section class="relative pt-16 pb-14 xl:pt-28 xl:pb-36 bg-white overflow-hidden">
-    <object class="absolute top-0 right-0 translate-x-2/3 w-[auto] xl:w-full z-0" type="image/svg+xml" data="/images/svg/route-2.svg"></object>
-    <object class="absolute bottom-0 left-0 w-auto xl:w-full z-0" type="image/svg+xml" data="/images/svg/wave.svg"></object>
+    <img class="absolute top-0 right-0 translate-x-2/3 w-[auto] xl:w-full z-0" src="/images/svg/route-2.svg" alt="" loading="lazy" width="1920" height="400" />
+    <img class="absolute bottom-0 left-0 w-auto xl:w-full z-0" src="/images/svg/wave.svg" alt="" loading="lazy" width="1920" height="200" />
     <div class="relative z-10 container pb-8">
       <div class="flex flex-col xl:grid xl:grid-cols-5 mb-14 gap-6 xl:gap-14">
         <app-main-heading

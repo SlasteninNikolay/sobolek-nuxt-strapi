@@ -22,6 +22,8 @@
               img-class="w-full max-h-[600px] border-[10px] border-white rounded-2xl object-cover object-bottom border translate-y-[40px] lg:-translate-x-[30px] lg:translate-y-[30px] rotate-[3deg]"
               :image="images[0]"
               loading="lazy"
+              :width="600"
+              :height="400"
           />
         </div>
         <!--   /right part    -->
@@ -50,9 +52,9 @@
         </base-app-slider>
       </div>
     </div>
-    <object class="absolute  pointer-events-none top-2/3 lg:top-1/2 right-0 -translate-y-1/2 -z-10" type="image/svg+xml" data="/images/svg/sea.svg"></object>
-    <object class="absolute pointer-events-none bottom-0 left-0 w-full -z-50" type="image/svg+xml" data="/images/svg/angle-1.svg"></object>
-    <object class="hidden pointer-events-none lg:block absolute -top-24 translate-y-[20%] left-0 lg:w-[100%] -z-20" type="image/svg+xml" data="/images/svg/route-1.svg"></object>
+    <img class="absolute  pointer-events-none top-2/3 lg:top-1/2 right-0 -translate-y-1/2 -z-10" src="/images/svg/sea.svg" alt="" loading="lazy" width="300" height="300" />
+    <img class="absolute pointer-events-none bottom-0 left-0 w-full -z-50" src="/images/svg/angle-1.svg" alt="" loading="lazy" width="1920" height="200" />
+    <img class="hidden pointer-events-none lg:block absolute -top-24 translate-y-[20%] left-0 lg:w-[100%] -z-20" src="/images/svg/route-1.svg" alt="" loading="lazy" width="1920" height="400" />
   </section>
 </template>
 <script setup>

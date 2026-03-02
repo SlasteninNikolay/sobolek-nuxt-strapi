@@ -48,7 +48,7 @@ const htmlDescription = computed(() => richTextToHtml(props.description))
 
 <template>
   <section v-reveal class="relative py-16 lg:py-28 overflow-hidden">
-    <object class="absolute top-0 right-0 h-auto lg:h-full -z-20" type="image/svg+xml" data="/images/svg/route-3.svg"></object>
+    <img class="absolute top-0 right-0 h-auto lg:h-full -z-20" src="/images/svg/route-3.svg" alt="" loading="lazy" width="1920" height="800" />
     <div class="container">
       <div class="flex flex-col lg:grid lg:grid-cols-2 mb-6 lg:mb-14 gap-6 lg:gap-14">
         <app-main-heading

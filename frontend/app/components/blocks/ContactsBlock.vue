@@ -59,11 +59,14 @@ const safeCoordinates = computed(() => {
 
 <template>
   <section v-reveal class="relative pt-16 lg:pt-24 overflow-hidden bg-white">
-    <object
+    <img
       class="hidden lg:block absolute top-0 left-1/2 -translate-x-1/2 z-0"
-      type="image/svg+xml"
-      data="/images/svg/route-6.svg"
-    ></object>
+      src="/images/svg/route-6.svg"
+      alt=""
+      loading="lazy"
+      width="1920"
+      height="400"
+    />
 
     <div class="container relative z-10">
       <app-main-heading
@@ -87,6 +90,8 @@ const safeCoordinates = computed(() => {
                   alt=""
                   class="mt-1 h-5 w-5 shrink-0"
                   loading="lazy"
+                  width="20"
+                  height="20"
                 />
                 <div class="text-sm tracking-widest uppercase text-primary/60">
                   {{ address }}
@@ -99,6 +104,8 @@ const safeCoordinates = computed(() => {
                   alt=""
                   class="mt-1 h-5 w-5 shrink-0"
                   loading="lazy"
+                  width="20"
+                  height="20"
                 />
                 <div class="space-y-1">
                   <a
@@ -123,6 +130,8 @@ const safeCoordinates = computed(() => {
                   alt=""
                   class="mt-1 h-5 w-5 shrink-0"
                   loading="lazy"
+                  width="20"
+                  height="20"
                 />
                 <div>
                   <a
@@ -178,4 +187,3 @@ const safeCoordinates = computed(() => {
   }
 }
 </style>
-
