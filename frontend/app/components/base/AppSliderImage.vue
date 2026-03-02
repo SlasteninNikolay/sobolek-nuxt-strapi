@@ -13,7 +13,7 @@
     <img 
       :src="src" 
       class="w-full h-full object-cover rounded-lg"
-      :alt="alt"
+      :alt="alt || 'Изображение'"
       loading="lazy"
     />
   </picture>

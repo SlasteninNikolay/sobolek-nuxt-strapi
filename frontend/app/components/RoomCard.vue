@@ -36,7 +36,7 @@ const handleBookingClick = (button: any, event: MouseEvent) => {
           :key="photo.id || index"
           :src="getStrapiMedia(photo.formats?.small?.url || photo.url)"
           :photo="photo"
-          :alt="photo.alternativeText"
+          :alt="photo.alternativeText || room.title || 'Фото номера'"
         />
       </app-slider>
     </div>
@@ -49,7 +49,7 @@ const handleBookingClick = (button: any, event: MouseEvent) => {
       />
       <div class="flex flex-wrap lg:grid lg:grid-cols-[minmax(100px,_300px)_minmax(100px,_300px)] gap-2">
         <div v-for="(item, index) in room?.features" :key="index" class="flex items-center gap-2">
-          <img :src="getStrapiMedia(item?.icon.url)" class="w-10 h-10 text-primary-500" :alt="item.title" :title="item.title" />
+          <img :src="getStrapiMedia(item?.icon.url)" class="w-10 h-10 text-primary-500" :alt="item.title || 'Иконка'" :title="item.title" />
           <span class="text-base lg:text-base text-primary font-semibold">{{ item.title }}</span>
         </div>
       </div>
