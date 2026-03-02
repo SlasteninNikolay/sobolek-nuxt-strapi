@@ -30,6 +30,8 @@ module.exports = factories.createCoreController(
                 // Отправляем email с noreply ящика
                 if (process.env.SEND_EMAILS !== 'false') {
                     try {
+                        const isEmailDebug = process.env.EMAIL_DEBUG === 'true';
+
                         const hasEmailPlugin = Boolean(strapi.plugins?.email?.services?.email?.send);
                         if (!hasEmailPlugin) {
                             strapi.log.error('[form-submission] Email plugin is not available. Check @strapi/provider-email-nodemailer installation and cms/config/plugins.js');
@@ -44,6 +46,13 @@ module.exports = factories.createCoreController(
 
                         if (!smtpFrom) {
                             strapi.log.warn('[form-submission] SMTP_DEFAULT_FROM is not set. Provider may reject sending.');
+                        }
+
+                        if (isEmailDebug) {
+                            // Не логируем пароль. Нужна диагностика в проде, чтобы понять какой порт/флаги реально подхватились.
+                            strapi.log.info(
+                                `[form-submission] SMTP debug config: host=${process.env.SMTP_HOST} port=${process.env.SMTP_PORT} secure=${process.env.SMTP_SECURE} requireTLS=${process.env.SMTP_REQUIRE_TLS} ignoreTLS=${process.env.SMTP_IGNORE_TLS} timeout=${process.env.EMAIL_TIMEOUT}`
+                            );
                         }
 
                         await strapi.plugins['email'].services.email.send({

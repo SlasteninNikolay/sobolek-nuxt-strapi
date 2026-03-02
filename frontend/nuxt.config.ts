@@ -27,6 +27,9 @@ app: {
             { property: 'og:type', content: 'website' },
             { property: 'og:url', content: 'https://sobolek-bratsk.ru' },
             { property: 'og:image', content: '/images/default-image.jpg' },
+            { property: 'og:site_name', content: 'Соболек' },
+            { property: 'og:locale', content: 'ru_RU' },
+            { name: 'twitter:card', content: 'summary_large_image' },
             { name: 'twitter:image', content: '/images/default-image.jpg' },
         ],
         link: [
@@ -114,7 +117,7 @@ app: {
         cookieName: 'strapi_jwt'
     },
     yandexMetrika: {
-        id: '',
+        id: '', // TODO: Вставьте ID счетчика Яндекс.Метрики
         debug: true,
         options: {
             webvisor: true,

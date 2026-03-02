@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /_nuxt/
+Disallow: /_ipx/
+Disallow: /preview
+Disallow: /search
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account
+Disallow: /login
+Disallow: /register
+Disallow: /password-reset
+Disallow: /email-verification
+Disallow: /404
+Disallow: /500
+
+Sitemap: https://sobolek-bratsk.ru/sitemap.xml

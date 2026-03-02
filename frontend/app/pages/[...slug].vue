@@ -132,6 +132,10 @@ useSeoMeta({
   ogType: 'website',
   ogUrl: 'https://sobolek-bratsk.ru',
   ogImage: '/images/default-image.jpg',
+  ogSiteName: 'Соболек',
+  ogLocale: 'ru_RU',
+  twitterCard: 'summary_large_image',
+  twitterImage: '/images/default-image.jpg',
   robots: 'index, follow'
 })
 
@@ -170,6 +174,8 @@ watch(pageData, (data) => {
       ogType: 'website',
       ogUrl: url,
       ogImage: image,
+      ogSiteName: 'Соболек',
+      ogLocale: 'ru_RU',
       twitterCard: 'summary_large_image',
       twitterImage: image,
       robots: indexing
