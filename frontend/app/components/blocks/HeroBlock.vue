@@ -33,9 +33,9 @@
                     class="absolute top-0 left-0 right-0 px-4 sm:px-6 lg:px-10 py-8 sm:py-12 lg:py-20 z-10"
                   >
                     <div class="max-w-3xl">
-                      <h3 v-if="slide.title" class="text-white text-xl sm:text-2xl lg:text-4xl font-bold mb-2">
+                      <h1 v-if="slide.title" class="text-white text-xl sm:text-2xl lg:text-4xl font-bold mb-2">
                         {{ slide.title }}
-                      </h3>
+                      </h1>
                       <p v-if="slide.description" class="text-white/90 text-sm sm:text-base lg:text-lg mb-4">
                         {{ slide.description }}
                       </p>
