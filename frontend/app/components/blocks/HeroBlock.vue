@@ -22,6 +22,9 @@
                     :image="slide.image"
                     :loading="index === 0 ? 'eager' : 'lazy'"
                     :fetchpriority="index === 0 ? 'high' : undefined"
+                    :width="1200"
+                    :height="800"
+                    sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
                   />
                   
                   <!-- Slide Content Overlay (если есть title или description) -->

@@ -24,6 +24,8 @@
           :alt="getAltText"
           :loading="loading"
           :fetchpriority="fetchpriority"
+          :width="width"
+          :height="height"
           class="block w-full h-full object-cover"
           :class="imgClass"
           @error="handleImageError"
@@ -58,6 +60,14 @@ const props = defineProps({
   mode: {
     type: String,
     default: ''
+  },
+  width: {
+    type: [String, Number],
+    default: undefined
+  },
+  height: {
+    type: [String, Number],
+    default: undefined
   }
 })
 

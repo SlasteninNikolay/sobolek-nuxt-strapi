@@ -111,7 +111,7 @@ function scrollToTop() {
 
     <div class="border-t border-white/10">
       <div class="container mx-auto px-4 py-10">
-        <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex gap-6 flex-row items-center justify-between">
           <p class="text-sm text-white/50">
             © {{ currentYear }}, База отдыха Соболек
           </p>
