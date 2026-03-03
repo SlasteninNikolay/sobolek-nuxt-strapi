@@ -3,7 +3,6 @@
   <section v-reveal="{ variant: 'fade' }" class="hero relative mt-12 lg:mt-14 pb-16 lg:pb-24" :class="header?.theme">
     <div class="container">
       <div class="hero__content w-full grid grid-cols-1 lg:grid-cols-1 gap-6 lg:gap-8 items-center">
-        <!-- Images - на мобилке будет первым -->
         <div v-if="images && images.length === 1" class="hero__image rounded-2xl relative lg:order-2 w-full overflow-hidden">
           <div class="absolute top-0 left-0 flex flex-col items-center justify-start gap-16 w-full h-full px-6 py-10 lg:p-12 z-10">
             <app-main-heading class="self-start" theme="secondary" :title="header?.title || 'База отдыха'" />
@@ -12,6 +11,10 @@
           <app-image mode="rounded" img-class="w-full aspect-square lg:aspect-auto max-h-[50vh] object-cover object-center border-none" :image="images[0]" loading="eager" />
         </div>
       </div>
+      <!-- TravelLine Search Block -->
+      <div class="hero__search mt-10 z-20 mx-auto w-full">
+        <TravellineSearchBlock class="w-full rounded-2xl border border-secondary-300" />
+      </div>
     </div>
     <object class="absolute pointer-events-none bottom-0 left-0 w-full -z-10" type="image/svg+xml" data="/images/svg/angle-1.svg"></object>
   </section>
@@ -19,6 +22,7 @@
 
 <script setup>
 import AppImage from "~/components/base/AppImage.vue";
+import TravellineSearchBlock from "~/components/blocks/TravellineSearchBlock.vue";
 
 defineProps({
   id: Number,

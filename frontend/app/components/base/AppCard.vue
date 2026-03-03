@@ -4,7 +4,7 @@
       <img :src="getStrapiMedia(iconUrl)" class="text-4xl text-primary-500" :aria-label="title" :alt="title" />
       <h3 class="text-lg/6 font-montserrat font-semibold text-primary text-balance">{{ title }}</h3>
     </header>
-   <div v-if="content" v-html="htmlContent" class="h-full px-6 py-7 text-base md:text-base bg-white border-2 border-secondary-300 rounded-2xl" />
+   <div v-if="content" v-html="htmlContent" class="h-full px-6 py-7 text-base md:text-base bg-white border border-secondary-300 rounded-2xl" />
   </article>
 </template>
 <script setup>

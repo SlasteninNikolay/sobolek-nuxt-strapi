@@ -7,18 +7,7 @@
 </template>
 
 <style>
-#block-search,
-#block-search * {
-  box-sizing: border-box;
-}
 
-#block-search {
-  background: #fff6eb;
-}
-
-.tl-container {
-  padding: 0;
-}
 </style>
 
 <script setup>
@@ -41,7 +30,7 @@ const initTravelLine = () => {
 
   (function(w) {
     var q = [
-      ["setContext", "TL-INT-legenda-camps-ru_2025-09-19", "ru"],
+      ["setContext", "TL-INT-sobolek-bratsk-ru_2026-03-03", "ru"],
       ["embed", "booking-form", {
         container: "tl-booking-form"
       }],

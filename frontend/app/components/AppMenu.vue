@@ -135,10 +135,8 @@ const handleButtonClick = (item, event) => {
 }
 
 const handleBookingClick = (event) => {
-  // вместо перехода по ссылке открываем форму "Оставить заявку"
-  event?.preventDefault?.()
   closeMobileMenu()
-  leadModal.open({ formType: 'Оставить заявку', source: 'header:booking' })
+  // leadModal.open({ formType: 'Оставить заявку', source: 'header:booking' }) // Убираем
 }
 
 function handlePhoneClick() {
@@ -338,12 +336,14 @@ const throttle = (func, limit) => {
           </div>
           
           <base-app-button
-              url=""
+              url="#"
               type="outline"
               size="small"
               title="БРОНИРОВАТЬ"
               aria-label="Забронировать"
               class="py-1 px-4 xl:py-2 xl:px-6 border-primary text-primary hover:text-white uppercase tracking-wider text-xs xl:text-sm font-semibold"
+              data-tl-booking-open="true"
+              data-tl-rate="870759"
               @click="handleBookingClick"
           />
         </div>

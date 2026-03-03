@@ -10,7 +10,7 @@
       disabled && 'opacity-50 cursor-not-allowed pointer-events-none'
     ]"
       :disabled="disabled"
-      v-bind="additionalAttributes"
+      v-bind="attrs"
       @click="handleClick"
   >
     <span
@@ -83,18 +83,23 @@ const props = defineProps({
     type: String,
     default: 'primary-300'
   },
-
-  // Дополнительные атрибуты для ссылки или кнопки
-  additionalAttributes: {
-    type: Object,
-    default: () => ({})
-  }
 })
 
 const emit = defineEmits(['click'])
+const vueAttrs = useAttrs()
 
 // Определяем тег: <a> если есть url, иначе <button>
-const tag = computed(() => props.url ? 'a' : 'button')
+const tag = computed(() => (props.url !== null && props.url !== undefined) ? 'a' : 'button')
+
+const attrs = computed(() => {
+  const result = { ...vueAttrs }
+  if (tag.value === 'a' && props.url === '') {
+    // Для ссылок-пустышек, которые обрабатываются через @click
+    result.href = '#'
+  }
+  return result
+})
+
 
 // Классы для разных типов кнопок
 const buttonClasses = computed(() => {
@@ -144,6 +149,10 @@ const handleClick = (event) => {
   if (props.disabled) {
     event.preventDefault()
     return
+  }
+  // Если это ссылка-заглушка, предотвращаем переход
+  if (tag.value === 'a' && (props.url === '' || props.url === '#')) {
+    event.preventDefault()
   }
   emit('click', event)
 }

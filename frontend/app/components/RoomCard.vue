@@ -15,11 +15,41 @@ const props = defineProps({
 
 const htmlRoomDescription = computed(() => richTextToHtml(props.room?.description))
 
-const handleBookingClick = (button: any, event: MouseEvent) => {
-  event.preventDefault()
+const getButtonAttributes = (button: any) => {
+  const label = button?.link?.label?.toLowerCase() || ''
+  const isBookingButton = label.includes('бронир') || label.includes('book')
 
+  if (isBookingButton) {
+    // Получаем ID комнаты из ссылки (предполагаем, что в админке в поле URL вписан ID или он там есть)
+    // В ТЗ сказано: "id будем пробрасывать через админку".
+    // Обычно в Strapi ссылка это поле URL. Будем считать, что там лежит ID комнаты для TL.
+    // Или если там пусто, то просто открываем модуль без конкретной комнаты.
+    const roomId = button?.link?.href
+
+    return {
+      'data-tl-booking-open': 'true',
+      'data-tl-room': roomId || undefined,
+      href: '#' // TravelLine требует href="#"
+    }
+  }
+
+  return {
+    href: button?.link?.href || ''
+  }
+}
+
+const handleBookingClick = (button: any, event: MouseEvent) => {
+  const label = button?.link?.label?.toLowerCase() || ''
+  if (label.includes('бронир') || label.includes('book')) {
+     // Для кнопок бронирования мы не вызываем leadModal
+     // Скрипт TravelLine перехватывает клик по data-tl-booking-open
+     return
+  }
+
+  event.preventDefault()
   // Strapi хранит roomId в ссылке (href). Пробрасываем её, вдруг пригодится в будущем.
   const roomId = button?.link?.href || ''
+
   leadModal.open({
     formType: 'Оставить заявку',
     source: roomId ? `room:${roomId}` : 'room:unknown',
@@ -58,11 +88,12 @@ const handleBookingClick = (button: any, event: MouseEvent) => {
       <base-app-button
           v-for="(button, index) in room.buttons"
           :key="button?.id || index"
-          :url="button.link?.href || ''"
+          :url="getButtonAttributes(button).href"
           :type="button?.theme"
           size="small"
           :title="button.link?.label || ''"
           :aria-label="button.link?.label || ''"
+          v-bind="getButtonAttributes(button)"
           @click="handleBookingClick(button, $event)"
       />
     </div>

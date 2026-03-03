@@ -9,10 +9,25 @@
 </template>
 
 <style>
-#tl-booking-form {
-  width: 100%;
-  max-width: 1440px;
+#block-search,
+#block-search * {
+  box-sizing: border-box;
+}
+
+#block-search {
+  background: #ffffff;
+  border: 1px solid #d0cdc4;
+  border-radius: 15px;
+  max-width: 100%;
   margin: 0 auto;
+}
+
+.tl-container {
+  padding: 0 30px;
+}
+
+.tl-container {
+  padding: 0;
 }
 </style>
 
@@ -36,7 +51,7 @@ const initTravelLine = () => {
 
   (function(w) {
     var q = [
-      ["setContext", "TL-INT-legenda-camps-ru_2025-09-19", "ru"],
+      ["setContext", "TL-INT-sobolek-bratsk-ru_2026-03-03", "ru"],
       ["embed", "booking-form", {
         container: "tl-booking-form"
       }],

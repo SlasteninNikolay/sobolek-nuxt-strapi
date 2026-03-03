@@ -59,9 +59,9 @@
         </div>
 
         <!-- TravelLine Search Block -->
-<!--        <div class="hero__search -mt-12 lg:-mt-20 z-20 relative max-w-[1240px] mx-auto w-full px-4">-->
-<!--          <TravellineSearchBlock class="w-full rounded-2xl shadow-xl overflow-hidden" />-->
-<!--        </div>-->
+        <div class="hero__search z-20 mx-auto w-full">
+          <TravellineSearchBlock class="w-full rounded-2xl border border-secondary-300" />
+        </div>
       </div>
     </div>
   </section>
