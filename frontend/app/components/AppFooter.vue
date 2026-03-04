@@ -10,6 +10,7 @@ const locale = computed(() => {
 })
 
 const { menuData, isLoading, error, errorMessage, refresh } = useMenuData(locale)
+const { contactData } = useContactInfo(locale)
 
 // Функция для получения всех ссылок в одном плоском массиве
 const flatLinks = computed(() => {
@@ -81,12 +82,17 @@ function scrollToTop() {
                   decoding="async"
               />
             </a>
-            <p class="mt-4 text-sm text-white/50 text-left text-balance">Иркутская область, г. Братск</p>
+            <p class="mt-4 text-sm text-white/50 text-left text-balance">{{ contactData?.address || 'Иркутская область, г. Братск, ул. Территория Р 02, д. 15/1 стр. 15/1' }}</p>
           </div>
           <div class="mt-auto text-start">
-            <p class="px-0 mx-0 mb-0"><a class="text-xl" href="tel:+73953282287">+7 (3953) 282-287</a></p>
-            <p class="px-0 mx-0 mb-0"><a class="text-xl" href="tel:+79526217287">+7 (952) 621-72-87</a></p>
-            <p class="px-0 mx-0 mb-0"><a class="underline" href="mailto:Sobolek2023@yandex.ru">Sobolek2023@yandex.ru</a></p>
+            <p class="px-0 mx-0 mb-0" v-if="contactData?.phone1"><a class="text-xl" :href="`tel:${contactData.phone1.replace(/[^\d+]/g, '')}`">{{ contactData.phone1 }}</a></p>
+            <p class="px-0 mx-0 mb-0" v-else><a class="text-xl" href="tel:+73953282287">+7 (3953) 282-287</a></p>
+
+            <p class="px-0 mx-0 mb-0" v-if="contactData?.phone2"><a class="text-xl" :href="`tel:${contactData.phone2.replace(/[^\d+]/g, '')}`">{{ contactData.phone2 }}</a></p>
+            <p class="px-0 mx-0 mb-0" v-else><a class="text-xl" href="tel:+79526217287">+7 (952) 621-72-87</a></p>
+
+            <p class="px-0 mx-0 mb-0" v-if="contactData?.email"><a class="underline" :href="`mailto:${contactData.email}`">{{ contactData.email }}</a></p>
+            <p class="px-0 mx-0 mb-0" v-else><a class="underline" href="mailto:Sobolek2023@yandex.ru">Sobolek2023@yandex.ru</a></p>
           </div>
         </div>
         <div class="grid grid-cols-2">

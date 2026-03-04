@@ -16,6 +16,11 @@ const strapiUrl = config.public.strapiUrl;
 const isMobileMenuOpen = ref(false);
 const route = useRoute()
 
+const locale = computed(() => {
+  return route.query.locale || 'ru'
+})
+const { contactData } = useContactInfo(locale)
+
 const showModal = ref(false)
 
 const showPhoneWidget = ref(false)
@@ -331,8 +336,11 @@ const throttle = (func, limit) => {
           </a>
 
           <div class="flex flex-col items-end text-xs xl:text-base">
-            <a href="tel:+73953282287" class="text-primary font-bold whitespace-nowrap">+7 (3953) 282-287</a>
-            <a href="tel:+79526217287" class="text-primary font-bold whitespace-nowrap">+7 (952) 621-72-87</a>
+            <a v-if="contactData?.phone1" :href="`tel:${contactData.phone1.replace(/[^\d+]/g, '')}`" class="text-primary font-bold whitespace-nowrap">{{ contactData.phone1 }}</a>
+            <a v-else href="tel:+73953282287" class="text-primary font-bold whitespace-nowrap">+7 (3953) 282-287</a>
+
+            <a v-if="contactData?.phone2" :href="`tel:${contactData.phone2.replace(/[^\d+]/g, '')}`" class="text-primary font-bold whitespace-nowrap">{{ contactData.phone2 }}</a>
+            <a v-else href="tel:+79526217287" class="text-primary font-bold whitespace-nowrap">+7 (952) 621-72-87</a>
           </div>
           
           <base-app-button
@@ -376,7 +384,7 @@ const throttle = (func, limit) => {
             <a
                 ref="phoneButtonRef"
                 class="flex items-center justify-center border p-1 border-secondary-600 rounded-full"
-                href="tel:+73953282287"
+                :href="contactData?.phone1 ? `tel:${contactData.phone1.replace(/[^\d+]/g, '')}` : 'tel:+73953282287'"
                 @click="handlePhoneButtonClick"
             >
               <Icon
@@ -406,9 +414,9 @@ const throttle = (func, limit) => {
                     <li class="p-4 border-b border-gray-100">
                       <a
                           @click="handlePhoneClick()"
-                          href="tel:+73953282287"
+                          :href="contactData?.phone1 ? `tel:${contactData.phone1.replace(/[^\d+]/g, '')}` : 'tel:+73953282287'"
                           class="text-primary"
-                      >+7 (3953) 282-287</a>
+                      >{{ contactData?.phone1 || '+7 (3953) 282-287' }}</a>
                     </li>
                     <li class="p-4">
                       <base-app-button
@@ -580,7 +588,7 @@ const throttle = (func, limit) => {
               />
               <span class="text-lg relative z-10 transition-colors duration-300 group-hover:text-white">{{ item.title }}</span>
             </component>
-            <span class="text-sm text-primary/50">Иркутская область, г. Братск</span>
+            <span class="text-sm text-primary/50">{{ contactData?.address || 'Иркутская область, г. Братск, ул. Территория Р 02, д. 15/1 стр. 15/1' }}</span>
           </div>
         </div>
       </aside>

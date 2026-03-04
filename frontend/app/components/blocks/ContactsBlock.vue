@@ -22,6 +22,16 @@ const props = defineProps<{
   mapDescription?: string
 }>()
 
+const route = useRoute()
+const locale = computed(() => route.query.locale || 'ru')
+const { contactData } = useContactInfo(locale)
+
+// Приоритет: локальные данные блока -> глобальные данные
+const finalAddress = computed(() => props.address || contactData.value?.address)
+const finalPhone1 = computed(() => props.phone1 || contactData.value?.phone1)
+const finalPhone2 = computed(() => props.phone2 || contactData.value?.phone2)
+const finalEmail = computed(() => props.email || contactData.value?.email)
+
 const addressIconSrc = computed(() => {
   const url = props.addressIcon?.url
   return url ? getStrapiMedia(url) : '/icons/circle.svg'
@@ -60,7 +70,7 @@ const safeCoordinates = computed(() => {
 <template>
   <section v-reveal class="relative pt-16 lg:pt-24 overflow-hidden bg-white">
     <img
-      class="hidden lg:block absolute top-0 left-1/2 -translate-x-1/2 z-0"
+      class="hidden lg:block w-1/4 absolute top-0 left-1/2 -translate-x-1/2 z-0"
       src="/images/svg/route-6.svg"
       alt=""
       loading="lazy"
@@ -93,12 +103,12 @@ const safeCoordinates = computed(() => {
                   width="20"
                   height="20"
                 />
-                <div class="text-sm tracking-widest uppercase text-primary/60">
-                  {{ address }}
+                <div class="max-w-96 text-sm tracking-widest uppercase text-primary/60">
+                  {{ finalAddress }}
                 </div>
               </li>
 
-              <li class="flex gap-3" v-if="phone1">
+              <li class="flex gap-3" v-if="finalPhone1">
                 <img
                   :src="phoneIconSrc"
                   alt=""
@@ -110,21 +120,21 @@ const safeCoordinates = computed(() => {
                 <div class="space-y-1">
                   <a
                     class="block text-lg font-medium"
-                    :href="phoneToTel(phone1)"
+                    :href="phoneToTel(finalPhone1)"
                   >
-                    {{ phone1 }}
+                    {{ finalPhone1 }}
                   </a>
                   <a
-                    v-if="phone2"
+                    v-if="finalPhone2"
                     class="block text-lg font-medium"
-                    :href="phoneToTel(phone2)"
+                    :href="phoneToTel(finalPhone2)"
                   >
-                    {{ phone2 }}
+                    {{ finalPhone2 }}
                   </a>
                 </div>
               </li>
 
-              <li class="flex gap-3" v-if="email">
+              <li class="flex gap-3" v-if="finalEmail">
                 <img
                   :src="emailIconSrc"
                   alt=""
@@ -136,9 +146,9 @@ const safeCoordinates = computed(() => {
                 <div>
                   <a
                     class="text-lg font-medium"
-                    :href="emailToMailto(email)"
+                    :href="emailToMailto(finalEmail)"
                   >
-                    {{ email }}
+                    {{ finalEmail }}
                   </a>
                 </div>
               </li>
@@ -152,7 +162,7 @@ const safeCoordinates = computed(() => {
               class="rounded-2xl"
               :coordinates="safeCoordinates"
               :name="mapName || 'База отдыха Соболек'"
-              :description="mapDescription || address || 'Иркутская область, г.Братск'"
+              :description="mapDescription || finalAddress || 'Иркутская область, г.Братск'"
             />
           </div>
         </div>
